@@ -1,0 +1,14 @@
+// variables
+$baseFontsize: 14px;
+
+//mixins
+@mixin border-radius($r){
+	border-radius: $r;
+	-webkit-border-radius: $r;
+	-moz-border-radius: $r;
+	-o-border-radius: $r;
+}
+
+// imports
+@import './partials/reset';
+@import './partials/pane';

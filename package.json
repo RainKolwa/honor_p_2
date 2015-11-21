@@ -1,0 +1,27 @@
+{
+  "name": "honor_p_2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RainKolwa/honor_p_2.git"
+  },
+  "author": "RainKolWa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RainKolwa/honor_p_2/issues"
+  },
+  "homepage": "https://github.com/RainKolwa/honor_p_2#readme",
+  "devDependencies": {
+    "browser-sync": "^2.10.0",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-jshint": "^2.0.0",
+    "gulp-sass": "^2.1.0",
+    "jshint": "^2.8.0"
+  }
+}
