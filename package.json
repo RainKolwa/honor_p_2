@@ -18,6 +18,7 @@
   "homepage": "https://github.com/RainKolwa/honor_p_2#readme",
   "devDependencies": {
     "browser-sync": "^2.10.0",
+    "gsap": "^1.18.0",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
     "gulp-jshint": "^2.0.0",

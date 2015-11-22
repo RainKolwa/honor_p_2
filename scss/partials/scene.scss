@@ -1,0 +1,41 @@
+.scene{
+	background: url(../images/bg.jpg) center center no-repeat;
+	background-size: cover;
+	.text-container{
+		position: absolute;
+		left: 50%;
+		top: percentage(260/$defaultHeight);
+		width: percentage(815/$defaultWidth);
+		min-width: 420px;
+		height: percentage(169/$defaultHeight);
+		margin-left: -1/2 * percentage(815/$defaultWidth);
+		background: url(../images/box-txt.png) center top no-repeat;
+		background-size: contain;
+		table{
+			width: 100%;
+			height: 100%;
+			td{
+				padding: 2% 10%;
+				text-align: center;
+				vertical-align: middle;
+				font-size: .8em;
+				line-height: 1.6em;
+				color: #fff;
+			}
+		}
+	}
+	.title{
+		position: absolute;
+		left: 50%;
+		top: percentage(45/$defaultHeight);
+		width: percentage(476/$defaultWidth);
+		height: percentage(125/$defaultHeight);
+		margin-left: -1/2 * percentage(476/$defaultWidth);
+		background: url(../images/logo.png) center bottom no-repeat;
+		background-size: contain;
+	}
+	.line{
+		background: url(../images/line.png) center center no-repeat;
+		background-size: cover;
+	}
+}

@@ -1,5 +1,7 @@
 // variables
 $baseFontsize: 14px;
+$defaultWidth: 1920;
+$defaultHeight: 1080;
 
 //mixins
 @mixin border-radius($r){
@@ -8,7 +10,12 @@ $baseFontsize: 14px;
 	-moz-border-radius: $r;
 	-o-border-radius: $r;
 }
+@mixin centerDOM($r){
+	
+}
 
 // imports
 @import './partials/reset';
+@import './partials/public';
+@import './partials/scene';
 @import './partials/pane';

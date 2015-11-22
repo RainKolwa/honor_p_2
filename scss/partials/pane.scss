@@ -1,0 +1,10 @@
+.pane{
+	position: fixed;
+	width: percentage(1603/1920);
+	height: percentage(383/1080);
+	bottom: 0;
+	left: 50%;
+	margin-left: -1/2 * percentage(1603/1920);
+	background: url(../images/ship.png) center bottom no-repeat;
+	background-size: contain;
+}
