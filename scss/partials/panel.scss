@@ -1,0 +1,48 @@
+.panel{
+	position: fixed;
+	width: percentage(1603/1920);
+	height: percentage(383/1080);
+	bottom: 0;
+	left: 50%;
+	margin-left: -1/2 * percentage(1603/1920);
+	background: url(../images/ship.png) center bottom no-repeat;
+	background-size: contain;
+	.statusBox{
+		position: absolute;
+		width: percentage(345/1603);
+		height: percentage(145/383);
+		left: 50%;
+		margin-left: -1/2 * percentage(345/1603);
+		bottom: 0;
+		a{
+			position: absolute;
+			top: 0;
+		    bottom: 0;
+		    left: 0;
+		    right: 0;
+			text-align: center;
+			cursor: pointer;
+			span{
+				font-size: 18px;
+				color: #fff;
+				display: inline-block;
+   				vertical-align: middle;
+			}
+			&:before{
+				content: '';
+			    display: inline-block;
+			    vertical-align: middle;
+			    height: 100%;
+			}
+		}
+		.default{
+			display: none;
+			background: url(../images/panel-status-default.png) center bottom no-repeat;
+			background-size: contain;
+		}
+		.start{
+			background: url(../images/panel-status-progress.png) center bottom no-repeat;
+			background-size: contain;
+		}
+	}
+}

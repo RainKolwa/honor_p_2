@@ -1,0 +1,23 @@
+.planets{
+	.planet-1{
+		width: percentage(1287/$defaultWidth);
+		height: percentage(1493/$defaultHeight);
+		position: absolute;
+		opacity: .8;
+		left: 50%;
+		top: 20%;
+		margin-left: -1/2 * percentage(1287/$defaultWidth);
+		background: url(../images/planet-1.png) no-repeat;
+		background-size: contain;
+	}
+	.planet-2{
+		width: percentage(361/$defaultWidth);
+		height: percentage(322/$defaultHeight);
+		position: absolute;
+		opacity: .8;
+		left: -3%;
+		top: 10%;
+		background: url(../images/planet-2.png) no-repeat;
+		background-size: contain;
+	}
+}

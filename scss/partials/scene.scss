@@ -1,7 +1,9 @@
 .scene{
+	overflow: hidden;
 	background: url(../images/bg.jpg) center center no-repeat;
 	background-size: cover;
 	.text-container{
+		display: none;
 		position: absolute;
 		left: 50%;
 		top: percentage(260/$defaultHeight);

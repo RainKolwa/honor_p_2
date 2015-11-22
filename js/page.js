@@ -1,4 +1,4 @@
-(function ($) {
+(function ($, TL, TM) {
 	var HONOR = {};
 
 	// 入场动画
@@ -11,7 +11,8 @@
 			currentChar = 1;
 
 		var init = function(){
-			startTyping(text, 50, "test");
+			// startTyping(text, 50, "test");
+			showPlanet();
 		}
 
 		var type = function(){
@@ -23,6 +24,10 @@
 				if (currentChar<=text.length)
 				{
 					setTimeout(type, delay);
+				}else{
+					console.log("complete")
+					// 显示星球
+
 				}
 			}	
 		}
@@ -34,15 +39,39 @@
 			destination=destinationParam;
 			type();
 		}
+
+		var showPlanet = function(){
+			var planet1 = $('.planet-1');
+			var planet2 = $('.planet-2');
+			TL.from(planet1, 5, {left: '50%', top: '0%', scale: .1, opacity: .5, onComplete: completePlanetHandler})
+			TL.from(planet2, 5, {left: '40%', top: '45%', scale: .3, opacity: .5})
+		}
+
+		var completePlanetHandler = function(){
+			// 显示猜题入口
+			console.log('jajs')
+		}
 		
 		return {
 			init: init
 		};
 	})();
 
+	// 控制面板
+	HONOR.Panel = (function(){
+		var init = function(){
+
+		}
+
+		return {
+			init: init
+		}
+	})();
+
+	// 启动飞船
 	HONOR.Landing.init();
 
-})(jQuery);
+})(jQuery, TweenLite, TweenMax);
 
 
 
