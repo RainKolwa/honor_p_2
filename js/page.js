@@ -49,7 +49,7 @@
 
 		var completePlanetHandler = function(){
 			// 显示猜题入口
-			console.log('jajs')
+			console.log('start')
 		}
 		
 		return {
