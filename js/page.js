@@ -10,9 +10,12 @@
 			delay = 0,
 			currentChar = 1;
 
+		var ship = $('.panel'),
+			dialog = $('.text-container');
+
 		var init = function(){
-			// startTyping(text, 50, "test");
-			showPlanet();
+			// showShip();
+			startTyping(text, 50, "test");
 		};
 
 		var type = function(){
@@ -26,8 +29,16 @@
 					setTimeout(type, delay);
 				}else{
 					console.log("complete");
-					// 显示星球
-					showPlanet();
+					// 停顿1s执行
+					setTimeout(function(){
+						// 隐藏对话框
+						TL.to(dialog, 0.8, {y: -100,alpha: 0})
+						setTimeout(function(){
+							// 显示星球
+							showPlanet();	
+						},800)
+					},1000)
+					
 				}
 			}	
 		};
@@ -40,17 +51,24 @@
 			type();
 		};
 
+		var showShip = function(){
+			TL.from(ship, 2, {bottom: -383, opacity: 0.5});
+			setTimeout(function(){
+				$('.line').fadeIn('fast').fadeOut('fast').fadeIn('fast');
+			}, 2000)
+		};
+
 		var showPlanet = function(){
 			var planet1 = $('.planet-1');
 			var planet2 = $('.planet-2');
 			var planet3 = $('.planet-3');
 			var planet4 = $('.planet-4');
 			var planet5 = $('.planet-5');
-			TL.from(planet1, 5, {left: '50%', top: '-19%', scale: 0.04, opacity: 1, onComplete: completePlanetHandler});
-			TL.from(planet2, 5, {left: '23%', top: '20%', scale: 0.2, opacity: 1});
-			TL.from(planet3, 5, {left: '35%', top: '25%', scale: 0.3, opacity: 1});
-			TL.from(planet4, 5, {left: '59%', top: '36%', scale: 0.3, opacity: 1});
-			TL.from(planet5, 5, {left: '52%', top: '33%', scale: 0.2, opacity: 1});
+			TL.to(planet1, 8, {left: '50%', top: '20%', scale: 1, ease: 'Linear', opacity: 1, onComplete: completePlanetHandler});
+			TL.to(planet2, 8, {left: '-3%', top: '10%', scale: 1, ease: 'Linear', opacity: 0.4});
+			TL.to(planet3, 8, {left: '20%', top: '-8%', scale: 1, ease: 'Linear', opacity: 0.6});
+			TL.to(planet4, 8, {left: '75%', top: '10%', scale: 1, ease: 'Linear', opacity: 0.8});
+			TL.to(planet5, 8, {left: '85%', top: '60%', scale: 1, ease: 'Linear', opacity: 0.3});
 		};
 
 		var completePlanetHandler = function(){

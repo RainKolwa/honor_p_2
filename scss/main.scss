@@ -4,14 +4,12 @@ $defaultWidth: 1920;
 $defaultHeight: 1080;
 
 //mixins
-@mixin border-radius($r){
-	border-radius: $r;
-	-webkit-border-radius: $r;
-	-moz-border-radius: $r;
-	-o-border-radius: $r;
-}
-@mixin centerDOM($r){
-	
+@mixin transformScale($val){
+	-webkit-transform: scale($val);
+	-moz-transform: scale($val);
+	-ms-transform: scale($val);
+	-o-transform: scale($val);
+	transform: scale($val);
 }
 
 
