@@ -1,7 +1,7 @@
-.exam{
-	z-index: 9;
-}
 .examBox{
+	z-index: 9;
+	display: none;
+	opacity: 1;
 	z-index: 10;
 	width: percentage(876/$defaultWidth);
 	height: percentage(556/$defaultHeight);

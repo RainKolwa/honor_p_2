@@ -209,7 +209,9 @@
 		var showQuestion = function(index){
 			// 显示第 index 条题目
 			var html = template('examView', questions[index]);
-			$('#examBox').html(html);
+			examBox.html(html);
+			examBox.show();
+			TL.from(examBox, 0.8, {scale: 1.5, opacity: 0})
 		};
 
 		var randomQuestion = function(){
