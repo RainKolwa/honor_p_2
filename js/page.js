@@ -73,7 +73,6 @@
 
 		var completePlanetHandler = function(){
 			// 显示猜题入口
-			console.log('start');
 			HONOR.Panel.init();
 			HONOR.Panel.setStatus();
 			// 小物件css动画
@@ -82,7 +81,6 @@
 			$('.astronaut-1').addClass('anim-rotate');
 			$('.astronaut-5').addClass('anim-jump');
 			$('.astronaut-5 .shadow').addClass('anim-shadow');
-			
 		};
 		
 		return {
@@ -118,8 +116,8 @@
 			});
 		};
 
-		var setStatus = function(){
-			var answeredCount =HONOR.Exam.allTotal - HONOR.Exam.questions.length;
+		var setStatus = function(answeredCount){
+			answeredCount = answeredCount || HONOR.Exam.allTotal - HONOR.Exam.questions.length;
 
 			switch (answeredCount){
 				case 0:
@@ -249,7 +247,17 @@
 		};
 
 		var submitAnswers = function(){
+			// 隐藏题目
+			TL.to(examBox, 0.8, {scale: 1.2, opacity: 0})
+			HONOR.Panel.setStatus('default');
+
 			// 提交答案（myAnswers）
+
+			// success回调
+			setTimeout(function(){
+				HONOR.Result.init();
+				HONOR.Result.displayResult();	
+			},1000)
 		}
 
 		return {
@@ -264,13 +272,32 @@
 
 	// 答题结果
 	HONOR.Result = (function(){
-		
-		var show = function(){
 
+		var resultBox = $('.result');
+		
+		var init = function(){
+			bindEvents();
+		};
+
+		var bindEvents = function(){
+			resultBox.on('click', '.hideit', function(){
+				hideResult();
+			})
+		};
+
+		var displayResult = function(){
+			resultBox.show();
+			TL.to(resultBox, 0.4, {scale: 1, opacity: 1})
+		};
+
+		var hideResult = function(){
+			TL.to(resultBox, 0.4, {scale: 0.8, opacity: 0})
 		};
 
 		return {
-
+			init: init,
+			displayResult: displayResult,
+			hideResult: hideResult
 		};
 	})();
 
@@ -279,6 +306,8 @@
 
 	// 测试
 	// HONOR.Exam.showQuestion(0);
+	// HONOR.Result.init();
+	// HONOR.Result.displayResult();
 
 })(jQuery, TweenLite, TweenMax, template);
 
