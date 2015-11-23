@@ -1,5 +1,5 @@
 .exam{
-	z-index: 10;
+	z-index: 9;
 }
 .examBox{
 	z-index: 10;
@@ -66,6 +66,7 @@
 			background: url(../images/sqr-txt.png) no-repeat;
 			background-size: contain;
 			&.a1,&.a2,&.a3{
+				font-size: 30px;
 				width: percentage(82/442);
 				height: percentage(91/556);
 			}

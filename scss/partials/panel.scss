@@ -1,5 +1,5 @@
 .panel{
-	z-index: 9;
+	z-index: 10;
 	position: fixed;
 	width: percentage(1603/1920);
 	height: percentage(383/1080);
@@ -42,7 +42,7 @@
 			background: url(../images/panel-status-default.png) center bottom no-repeat;
 			background-size: contain;
 		}
-		.start{
+		.start, .next, .submit{
 			background: url(../images/panel-status-progress.png) center bottom no-repeat;
 			background-size: contain;
 		}

@@ -57,7 +57,7 @@
 			// 显示猜题入口
 			console.log('start');
 			HONOR.Panel.init();
-			HONOR.Panel.setStatus('start');
+			HONOR.Panel.setStatus();
 		};
 		
 		return {
@@ -78,8 +78,13 @@
 		var bindEvents = function(){
 			statusBox.on('click', 'a', function(e){
 				e.preventDefault();
-				if($(this).hasClass('start') || $(this).hasClass('next')){
+				if($(this).hasClass('start')){
+					HONOR.Exam.init();
 					HONOR.Exam.randomQuestion();
+					HONOR.Panel.setStatus();
+				}else if($(this).hasClass('next')){
+					HONOR.Exam.randomQuestion();
+					HONOR.Panel.setStatus();
 				}else if($(this).hasClass('submit')){
 					HONOR.Exam.submitAnswers();
 				}else{
@@ -88,15 +93,20 @@
 			});
 		};
 
-		var setStatus = function(type){
-			switch (type){
-				case 'start':
+		var setStatus = function(){
+			var answeredCount =HONOR.Exam.allTotal - HONOR.Exam.questions.length;
+
+			switch (answeredCount){
+				case 0:
 					statusBox.find('.start').show().siblings().hide();
 					break;
-				case 'next':
+				case 1:
 					statusBox.find('.next').show().siblings().hide();
 					break;
-				case 'submit':
+				case 2:
+					statusBox.find('.next').show().siblings().hide();
+					break;
+				case 3:
 					statusBox.find('.submit').show().siblings().hide();
 					break;
 				default:
@@ -165,8 +175,7 @@
 		];
 
 		var examTotal = 3; // 随机题数
-		var answeredCount = 0;
-		var numberPerLine = 7;
+		var allTotal = questions.length;
 		var myAnswers;
 
 		var examBox = $('.examBox');
@@ -176,7 +185,20 @@
 		};
 
 		var bindEvents = function(){
-
+			examBox.on('click', '.paper a', function(){
+				if($(this).hasClass('a1') || $(this).hasClass('a2') || $(this).hasClass('a3')) return;
+				var select = $(this).text();
+				if($('.paper a.a1').text() === ''){
+					$('.paper a.a1').text(select)
+				}else if($('.paper a.a2').text() === ''){
+					$('.paper a.a2').text(select)
+				}else if($('.paper a.a3').text() === ''){
+					$('.paper a.a3').text(select)
+				}else{
+					alert('空格已填满！')
+					return;
+				}
+			})
 		};
 
 		var randomQuestionIndex = function(){
@@ -207,8 +229,9 @@
 			init: init,
 			randomQuestion: randomQuestion,
 			showQuestion: showQuestion,
+			submitAnswers: submitAnswers,
 			questions: questions,
-			submitAnswers: submitAnswers
+			allTotal: allTotal
 		};
 	})();
 
@@ -228,7 +251,7 @@
 	HONOR.Landing.init();
 
 	// 测试
-	 HONOR.Exam.showQuestion(0);
+	// HONOR.Exam.showQuestion(0);
 
 })(jQuery, TweenLite, TweenMax, template);
 
