@@ -78,12 +78,10 @@
 		var bindEvents = function(){
 			statusBox.on('click', 'a', function(e){
 				e.preventDefault();
-				if($(this).hasClass('start')){
-
-				}else if($(this).hasClass('next')){
-
+				if($(this).hasClass('start') || $(this).hasClass('next')){
+					HONOR.Exam.randomQuestion();
 				}else if($(this).hasClass('submit')){
-
+					HONOR.Exam.submitAnswers();
 				}else{
 					return;
 				}
@@ -117,7 +115,49 @@
 		// 定义题库
 		var questions = [
 			{
-				id: 0,
+				id: 1,
+				img: "images/star-1.png",
+				desc: "她凭一己之力就能掀起一股文化现象。她是时尚界风生水起的新宠。无惧“玩过界”，勇敢做自己。",
+				content: ["紫","韶","丁","玮","颖","林","弦","宇","邓","涵","当","蔡","李","靓","棋","张","范","春","琪","子","依"]
+			},
+			{
+				id: 2,
+				img: "images/star-1.png",
+				desc: "哈哈",
+				content: ["你","好","吗","停","之","哈","奇","葩","舒","服","撒","发","生","啊","是","分","手"]
+			},
+			{
+				id: 3,
+				img: "images/star-1.png",
+				desc: "哈哈",
+				content: ["你","好","吗","停","之","哈","奇","葩","舒","服","撒","发","生","啊","是","分","手"]
+			},
+			{
+				id: 4,
+				img: "images/star-1.png",
+				desc: "哈哈",
+				content: ["你","好","吗","停","之","哈","奇","葩","舒","服","撒","发","生","啊","是","分","手"]
+			},
+			{
+				id: 5,
+				img: "images/star-1.png",
+				desc: "哈哈",
+				content: ["你","好","吗","停","之","哈","奇","葩","舒","服","撒","发","生","啊","是","分","手"]
+			},
+			{
+				id: 6,
+				img: "images/star-1.png",
+				desc: "哈哈",
+				content: ["你","好","吗","停","之","哈","奇","葩","舒","服","撒","发","生","啊","是","分","手"]
+			},
+			{
+				id: 7,
+				img: "images/star-1.png",
+				desc: "哈哈",
+				content: ["你","好","吗","停","之","哈","奇","葩","舒","服","撒","发","生","啊","是","分","手"]
+			},
+			{
+				id: 8,
 				img: "images/star-1.png",
 				desc: "哈哈",
 				content: ["你","好","吗","停","之","哈","奇","葩","舒","服","撒","发","生","啊","是","分","手"]
@@ -127,6 +167,7 @@
 		var examTotal = 3; // 随机题数
 		var answeredCount = 0;
 		var numberPerLine = 7;
+		var myAnswers;
 
 		var examBox = $('.examBox');
 
@@ -158,11 +199,16 @@
 			questions.splice(index, 1);
 		};
 
+		var submitAnswers = function(){
+			// 提交答案（myAnswers）
+		}
+
 		return {
 			init: init,
 			randomQuestion: randomQuestion,
 			showQuestion: showQuestion,
-			questions: questions
+			questions: questions,
+			submitAnswers: submitAnswers
 		};
 	})();
 
@@ -182,7 +228,7 @@
 	HONOR.Landing.init();
 
 	// 测试
-	HONOR.Exam.showQuestion(0);
+	 HONOR.Exam.showQuestion(0);
 
 })(jQuery, TweenLite, TweenMax, template);
 

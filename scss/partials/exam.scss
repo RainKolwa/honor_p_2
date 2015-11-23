@@ -1,0 +1,77 @@
+.exam{
+	z-index: 10;
+}
+.examBox{
+	z-index: 10;
+	width: percentage(876/$defaultWidth);
+	height: percentage(556/$defaultHeight);
+	position: fixed;
+	left: 50%;
+	top: 20%;
+	margin-left: -1/2 * percentage(876/$defaultWidth);
+	background: url(../images/box-exam.png) center center no-repeat;
+	background-size: contain;
+	.imgBox{
+		position: absolute;
+		width: percentage(420/876);
+		height: percentage(346/556);
+		left: 2%;
+		top: 0;
+		background: url(../images/star-bg.png) center bottom no-repeat;
+		background-size: 80%;
+		table{
+			width: 100%;
+			height: 80%;
+		}
+		td{
+			text-align: center;
+			vertical-align: bottom;
+			img{
+				width: 35%;
+			}
+		}
+	}
+	.description{
+		position: absolute;
+		width: percentage(420/876);
+		height: percentage(184/556);
+		left: 0;
+		bottom: 0;
+		p{	
+			width: 70%;
+			margin: 0 auto;
+			font-size: 14px;
+			color: #39aeeb;
+			line-height: 22px;
+			text-align: center;
+		}
+	}
+	.paper{
+		position: absolute;
+		width: percentage(442/876);
+		height: 100%;
+		top: 0;
+		right: 0;
+		a{
+			font-size: 18px;
+			color: #fff;
+			text-align: center;
+			display: block;
+			line-height: 200%;
+			cursor: pointer;
+			position: absolute;
+			width: percentage(50/442);
+			height: percentage(55/556);
+			top: percentage(108/556);
+			background: url(../images/sqr-txt.png) no-repeat;
+			background-size: contain;
+			&.a1,&.a2,&.a3{
+				width: percentage(82/442);
+				height: percentage(91/556);
+			}
+			&.a1{left: percentage(20/442);}
+			&.a2{left: percentage((82+20*2)/442);}
+			&.a3{left: percentage((82*2+20*3)/442);}
+		}
+	}
+}
