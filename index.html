@@ -44,19 +44,7 @@
 	<!-- Exam -->
 	<div class="exam">
 		<div class="examBox" id="examBox">
-			<div class="description">
-				
-			</div>
-			<div class="paper">
-				<div class="blank">
-					<a href=""></a>
-					<a href=""></a>
-					<a href=""></a>
-				</div>
-				<div class="selections">
-					
-				</div>
-			</div>
+			
 		</div>
 		<div class="examLight"></div>
 	</div>
@@ -68,6 +56,27 @@
 
 	<!-- Naviagtion & Share Tools -->
 	<div></div>
+
+	<!-- Templates -->
+	<script id="examView" type="text/html">
+		<div class="description">
+			<img src="{{img}}" />
+			<p>{{desc}}</p>
+		</div>
+		<div class="paper">
+			<div class="blank">
+				<a href=""></a>
+				<a href=""></a>
+				<a href=""></a>
+			</div>
+			<div class="selections">
+				{{each content as value i}}
+			        <a style="">{{value}}</a>
+			    {{/each}}
+			</div>
+		</div>
+	</script>
+
 
 	<!-- Include javascript files -->
 	<script type="text/javascript" src="dist/lib.js"></script>
