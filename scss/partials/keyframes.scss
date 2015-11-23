@@ -1,0 +1,60 @@
+@-webkit-keyframes twinkling{
+	0%{
+		opacity: 0;
+	}
+	50%{
+		opacity: 1;
+	}
+	100%{
+		opacity: 0;
+	}
+}
+
+@-webkit-keyframes lightning{
+	0%{
+		opacity: 0;
+	}
+	100%{
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes jump {
+    0%{
+		transform: translate3d(0,0,0);
+	}
+	50%{
+		transform: translate3d(0,15px,0);
+	}
+	100%{
+		transform: translate3d(0,0,0);
+	}
+}
+
+@-webkit-keyframes shadow {
+    0%{
+		transform: scale(0);
+	}
+	50%{
+		transform: scale(0.5);
+	}
+	100%{
+		transform: scale(0);
+	}
+}
+
+.anim-shadow {
+    -webkit-animation: shadow 4s ease-in-out infinite;
+}
+
+.anim-jump {
+    -webkit-animation: jump 4s ease-in-out infinite;
+}
+ 
+.anim-alert {
+	-webkit-animation: twinkling 2s infinite ease-in-out;
+}
+
+.anim-lightning {
+	-webkit-animation: lightning 4s infinite;
+}

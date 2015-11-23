@@ -58,6 +58,11 @@
 			console.log('start');
 			HONOR.Panel.init();
 			HONOR.Panel.setStatus();
+			// 小物件css动画
+			$('.radar-container .alert').addClass('anim-alert');
+			$('.radar-container .lightning').addClass('anim-lightning');
+			$('.astronaut-5').addClass('anim-jump');
+			$('.astronaut-5 .shadow').addClass('anim-shadow');
 		};
 		
 		return {
