@@ -1,5 +1,7 @@
 (function ($, TL, TM, template) {
+
 	var HONOR = {};
+	window.HONOR = HONOR;
 
 	// 入场动画
 	HONOR.Landing = (function(){
@@ -106,32 +108,12 @@
 
 	// 抽题
 	HONOR.Exam = (function(){
-
+		// 定义题库
 		var questions = [
 			{
-				img: "images/1.jpg",
+				id: 0,
+				img: "images/star-1.png",
 				desc: "哈哈",
-				content: ["你","好","吗","停","之","哈","奇","葩","舒","服","撒","发","生","啊","是","分","手"]
-			},
-			{
-				content: ["你","好","吗","停","之","哈","奇","葩","舒","服","撒","发","生","啊","是","分","手"]
-			},
-			{
-				content: ["你","好","吗","停","之","哈","奇","葩","舒","服","撒","发","生","啊","是","分","手"]
-			},
-			{
-				content: ["你","好","吗","停","之","哈","奇","葩","舒","服","撒","发","生","啊","是","分","手"]
-			},
-			{
-				content: ["你","好","吗","停","之","哈","奇","葩","舒","服","撒","发","生","啊","是","分","手"]
-			},
-			{
-				content: ["你","好","吗","停","之","哈","奇","葩","舒","服","撒","发","生","啊","是","分","手"]
-			},
-			{
-				content: ["你","好","吗","停","之","哈","奇","葩","舒","服","撒","发","生","啊","是","分","手"]
-			},
-			{
 				content: ["你","好","吗","停","之","哈","奇","葩","舒","服","撒","发","生","啊","是","分","手"]
 			}
 		];
@@ -151,7 +133,7 @@
 		};
 
 		var randomQuestionIndex = function(){
-			// 随机产生[0,7]之间的整数
+			// 随机产生[0,questions.length]之间的整数
 			return Math.floor(Math.random() * questions.length);
 		};
 
@@ -162,14 +144,19 @@
 		};
 
 		var randomQuestion = function(){
+			// index !== id
 			var index = randomQuestionIndex();
+			// 显示题目
 			showQuestion(index);
+			// 从题库中删除该题
+			questions.splice(index, 1);
 		};
 
 		return {
 			init: init,
 			randomQuestion: randomQuestion,
-			showQuestion: showQuestion
+			showQuestion: showQuestion,
+			questions: questions
 		};
 	})();
 
@@ -187,6 +174,8 @@
 
 	// 启动飞船
 	HONOR.Landing.init();
+
+	// 测试
 	HONOR.Exam.showQuestion(0);
 
 })(jQuery, TweenLite, TweenMax, template);
