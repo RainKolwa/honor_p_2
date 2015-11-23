@@ -61,8 +61,10 @@
 			// 小物件css动画
 			$('.radar-container .alert').addClass('anim-alert');
 			$('.radar-container .lightning').addClass('anim-lightning');
+			$('.astronaut-1').addClass('anim-rotate');
 			$('.astronaut-5').addClass('anim-jump');
 			$('.astronaut-5 .shadow').addClass('anim-shadow');
+			
 		};
 		
 		return {
@@ -216,7 +218,7 @@
 			var html = template('examView', questions[index]);
 			examBox.html(html);
 			examBox.show();
-			TL.from(examBox, 0.8, {scale: 1.5, opacity: 0})
+			TL.from(examBox, 0.4, {scale: 1.2, opacity: 0})
 		};
 
 		var randomQuestion = function(){
