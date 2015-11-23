@@ -9,6 +9,69 @@
 		margin-left: -1/2 * percentage(1287/$defaultWidth);
 		background: url(../images/planet-1.png) no-repeat;
 		background-size: contain;
+		.astronaut-1{
+			width: percentage(151/1287);
+			height: percentage(133/1493);
+			position: absolute;
+			left: 18%;
+			top: 8%;
+			background: url(../images/astronaut-first.png) center center no-repeat;
+			background-size: contain;
+		}
+		.astronaut-5{
+			width: percentage(88/1287);
+			height: percentage(116/1493);
+			position: absolute;
+			left: 65%;
+			top: 13%;
+			background: url(../images/astronaut-5th.png) center center no-repeat;
+			background-size: contain;
+		}
+		.astronaut-6{
+			width: percentage(72/1287);
+			height: percentage(69/1493);
+			position: absolute;
+			left: 65%;
+			top: 6%;
+			background: url(../images/astronaut-last.png) center center no-repeat;
+			background-size: contain;
+		}
+		.radar-container{
+			width: percentage(193/1287);
+			height: percentage(193/1493);
+			position: absolute;
+			left: 22%;
+			top: 18%;
+			.radar{
+				z-index: 2;
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				left: 0;
+				top: 0;
+				background: url(../images/radar.png) center center no-repeat;
+			}
+			.alert{
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				left: 0;
+				top: 0;
+				opacity: 1;
+				background: url(../images/radar-alert.png) center center no-repeat;
+				background-size: contain;
+			}
+			.lightning{
+				z-index: 2;
+				position: absolute;
+				width: percentage(29/193);
+				height: percentage(36/192);
+				left: 50%;
+				margin-left: -1/2 * percentage(45/193);
+				top: 5%;
+				background: url(../images/lightning.png) no-repeat;
+			}
+		}
 	}
 	.planet-2{
 		width: percentage(361/$defaultWidth);
