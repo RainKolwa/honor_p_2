@@ -15,6 +15,7 @@
 		margin-left: -1/2 * percentage(345/1603);
 		bottom: 0;
 		a{
+			display: none;
 			position: absolute;
 			top: 0;
 		    bottom: 0;
@@ -36,7 +37,7 @@
 			}
 		}
 		.default{
-			display: none;
+			display: block;
 			background: url(../images/panel-status-default.png) center bottom no-repeat;
 			background-size: contain;
 		}
