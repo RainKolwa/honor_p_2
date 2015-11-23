@@ -43,8 +43,14 @@
 		var showPlanet = function(){
 			var planet1 = $('.planet-1');
 			var planet2 = $('.planet-2');
-			TL.from(planet1, 5, {left: '50%', top: '0%', scale: 0.1, opacity: 0.5, onComplete: completePlanetHandler});
-			TL.from(planet2, 5, {left: '40%', top: '45%', scale: 0.3, opacity: 0.5});
+			var planet3 = $('.planet-3');
+			var planet4 = $('.planet-4');
+			var planet5 = $('.planet-5');
+			TL.from(planet1, 5, {left: '50%', top: '-19%', scale: 0.04, opacity: 1, onComplete: completePlanetHandler});
+			TL.from(planet2, 5, {left: '23%', top: '20%', scale: 0.2, opacity: 1});
+			TL.from(planet3, 5, {left: '35%', top: '25%', scale: 0.3, opacity: 1});
+			TL.from(planet4, 5, {left: '59%', top: '36%', scale: 0.3, opacity: 1});
+			TL.from(planet5, 5, {left: '52%', top: '33%', scale: 0.2, opacity: 1});
 		};
 
 		var completePlanetHandler = function(){

@@ -3,7 +3,7 @@
 		width: percentage(1287/$defaultWidth);
 		height: percentage(1493/$defaultHeight);
 		position: absolute;
-		opacity: .8;
+		opacity: 1;
 		left: 50%;
 		top: 20%;
 		margin-left: -1/2 * percentage(1287/$defaultWidth);
@@ -25,8 +25,8 @@
 		height: percentage(286/$defaultHeight);
 		position: absolute;
 		opacity: .8;
-		left: -3%;
-		top: 10%;
+		left: 20%;
+		top: -8%;
 		background: url(../images/planet-3.png) no-repeat;
 		background-size: contain;
 	}
@@ -35,7 +35,7 @@
 		height: percentage(204/$defaultHeight);
 		position: absolute;
 		opacity: .8;
-		left: -3%;
+		left: 75%;
 		top: 10%;
 		background: url(../images/planet-4.png) no-repeat;
 		background-size: contain;
@@ -45,8 +45,8 @@
 		height: percentage(477/$defaultHeight);
 		position: absolute;
 		opacity: .8;
-		left: -3%;
-		top: 10%;
+		left: 85%;
+		top: 60%;
 		background: url(../images/planet-5.png) no-repeat;
 		background-size: contain;
 	}
