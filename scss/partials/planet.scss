@@ -10,7 +10,7 @@
 		background: url(../images/planet-1.png) no-repeat;
 		background-size: contain;
 		-ms-behavior: url(../backgroundsize.min.htc);
-		opacity: .2;
+		opacity: 1;
 		@include transformScale(0);
 		.astronaut-1{
 			width: percentage(151/1287);
@@ -119,7 +119,7 @@
 		width: percentage(361/$defaultWidth);
 		height: percentage(322/$defaultHeight);
 		position: absolute;
-		opacity: .2;
+		opacity: .6;
 		left: 23%;
 		top: 20%;
 		background: url(../images/planet-2.png) no-repeat;
@@ -131,7 +131,7 @@
 		width: percentage(317/$defaultWidth);
 		height: percentage(286/$defaultHeight);
 		position: absolute;
-		opacity: .2;
+		opacity: .6;
 		left: 35%;
 		top: 25%;
 		background: url(../images/planet-3.png) no-repeat;
@@ -143,7 +143,7 @@
 		width: percentage(234/$defaultWidth);
 		height: percentage(204/$defaultHeight);
 		position: absolute;
-		opacity: .2;
+		opacity: .6;
 		left: 59%;
 		top: 36%;
 		background: url(../images/planet-4.png) no-repeat;
@@ -155,7 +155,7 @@
 		width: percentage(603/$defaultWidth);
 		height: percentage(477/$defaultHeight);
 		position: absolute;
-		opacity: .2;
+		opacity: .6;
 		left: 52%;
 		top: 33%;
 		background: url(../images/planet-5.png) no-repeat;

@@ -67,7 +67,6 @@
 					percentBox.html(percentage+"%");
 					if(img_count == allimg_count){
 						// UFO升顶
-						console.log('ufo go top');
 						TL.to(UFO, 0.8, {left: "45%", top: "-10%", onComplete: completeLoadingHandler})
 					}
 				});
@@ -85,7 +84,6 @@
 		var completeLoadingHandler = function(){
 			// 移除loading
 			$('#loading').fadeOut(100,function(){
-				console.log('remove load')
 				$(this).remove();
 				// UFO浪
 				randomUFO();
@@ -137,11 +135,11 @@
 			var planet3 = $('.planet-3');
 			var planet4 = $('.planet-4');
 			var planet5 = $('.planet-5');
-			TL.to(planet1, 8, {left: '50%', top: '20%', scale: 1, ease: 'Linear', opacity: 1, onComplete: completePlanetHandler});
-			TL.to(planet2, 8, {left: '-3%', top: '10%', scale: 1, ease: 'Linear', opacity: 0.4});
-			TL.to(planet3, 8, {left: '20%', top: '-8%', scale: 1, ease: 'Linear', opacity: 0.6});
-			TL.to(planet4, 8, {left: '75%', top: '10%', scale: 1, ease: 'Linear', opacity: 0.8});
-			TL.to(planet5, 8, {left: '85%', top: '60%', scale: 1, ease: 'Linear', opacity: 0.3});
+			TL.to(planet1, 5, {left: '50%', top: '20%', scale: 1, ease: 'Linear', onComplete: completePlanetHandler});
+			TL.to(planet2, 8, {left: '-3%', top: '10%', scale: 1, ease: 'Linear', delay: 0.5});
+			TL.to(planet3, 10, {left: '20%', top: '-8%', scale: 1, ease: 'Linear', delay: 1.5});
+			TL.to(planet4, 8, {left: '75%', top: '10%', scale: 1, ease: 'Linear', delay: 0.2});
+			TL.to(planet5, 7, {left: '85%', top: '60%', scale: 1, ease: 'Linear', delay: 0.8});
 		};
 
 		var completePlanetHandler = function(){
