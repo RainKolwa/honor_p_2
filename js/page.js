@@ -362,7 +362,6 @@
 			examBox.html(html);
 			examBox.show();
 			if(!HONOR.Public.isltIE8){
-				alert('no ie')
 				TL.from(examBox, 0.4, {scale: 1.2, opacity: 0})
 			}else{
 				examBox.css('opacity', 1);
