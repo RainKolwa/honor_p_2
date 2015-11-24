@@ -11,6 +11,22 @@
 		dataType: isProduction ? "json" : "jsonp"
 	};
 
+	HONOR.Public = (function(){
+		
+		var isltIE8 = function(){
+			if($.browser.msie && parseFloat($.browser.version) < 9){
+				alert('ie8');
+				return true;
+			}else{
+				return false;
+			}
+		};
+
+		return {
+			isltIE8: isltIE8
+		}
+	})();
+
 	// 入场动画
 	HONOR.Landing = (function(){
 
@@ -149,17 +165,25 @@
 			var planet3 = $('.planet-3');
 			var planet4 = $('.planet-4');
 			var planet5 = $('.planet-5');
-			TL.to(planet1, 5, {left: '50%', top: '20%', scale: 1, ease: 'Linear', onComplete: completePlanetHandler});
-			TL.to(planet2, 8, {left: '-3%', top: '10%', scale: 1, ease: 'Linear', delay: 0.5});
-			TL.to(planet3, 10, {left: '20%', top: '-8%', scale: 1, ease: 'Linear', delay: 1.5});
-			TL.to(planet4, 8, {left: '75%', top: '10%', scale: 1, ease: 'Linear', delay: 0.2});
-			TL.to(planet5, 7, {left: '85%', top: '60%', scale: 1, ease: 'Linear', delay: 0.8});
-			// 小物件css动画
-			$('.radar-container .alert').addClass('anim-alert');
-			$('.radar-container .lightning').addClass('anim-lightning');
-			$('.astronaut-1').addClass('anim-rotate');
-			$('.astronaut-5').addClass('anim-jump');
-			$('.astronaut-5 .shadow').addClass('anim-shadow');
+			if(!HONOR.Public.isltIE8){
+				TL.to(planet1, 5, {left: '50%', top: '20%', scale: 1, ease: 'Linear', onComplete: completePlanetHandler});
+				TL.to(planet2, 8, {left: '-3%', top: '10%', scale: 1, ease: 'Linear', delay: 0.5});
+				TL.to(planet3, 10, {left: '20%', top: '-8%', scale: 1, ease: 'Linear', delay: 1.5});
+				TL.to(planet4, 8, {left: '75%', top: '10%', scale: 1, ease: 'Linear', delay: 0.2});
+				TL.to(planet5, 7, {left: '85%', top: '60%', scale: 1, ease: 'Linear', delay: 0.8});
+				// 小物件css动画
+				$('.radar-container .alert').addClass('anim-alert');
+				$('.radar-container .lightning').addClass('anim-lightning');
+				$('.astronaut-1').addClass('anim-rotate');
+				$('.astronaut-5').addClass('anim-jump');
+				$('.astronaut-5 .shadow').addClass('anim-shadow');
+			}else{
+				planet1.css({left: '50%', top: '20%'});
+				planet2.css({left: '-3%', top: '10%'});
+				planet3.css({left: '20%', top: '-8%'});
+				planet4.css({left: '75%', top: '10%'});
+				planet5.css({left: '85%', top: '60%'});
+			}
 		};
 
 		var completePlanetHandler = function(){
