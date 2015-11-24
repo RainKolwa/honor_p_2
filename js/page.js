@@ -6,7 +6,7 @@
 	window.HONOR = HONOR;
 
 	HONOR.Config = {
-		baseUrl: isProduction ? "http://campaign.honor.cn/planet/star" : "http://campaign.honor.cn/test/planet/star",
+		baseUrl: isProduction ? "http://campaign.honor.cn/planet/star" : "http://campaign.honor.cn/test/planet/star/pc",
 		api: "http://campaign.honor.cn/awards-inform/star/src/save.php?action=",
 		dataType: isProduction ? "json" : "jsonp"
 	};
@@ -343,7 +343,7 @@
 		var submitAnswers = function(){
 			// 隐藏题目
 			TL.to(examBox, 0.8, {scale: 1.2, opacity: 0})
-			HONOR.Panel.setStatus('default');
+			HONOR.Panel.setStatus(0);
 
 			// 提交答案（myAnswers）
 
@@ -473,7 +473,6 @@
 				method: 'GET',
 				dataType: HONOR.Config.dataType,
 				success: function(rs){
-					console.log(rs);
 					// 
 					if(rs.code === 0){
 						switch(rs.data.prize){
@@ -512,7 +511,7 @@
 	})();
 
 	// 登录/注销
-	HONOR.Api = function(){
+	HONOR.Api = (function(){
 		var isLogin = function(showResult){
 			$.ajax({
 				url: HONOR.Config.api + 'islogin',
@@ -522,7 +521,7 @@
 					if(rs.code === -1){
 						// 未登录
 						if(showResult){
-							var reurl = HONOR.Config.baseUrl + '&showResult=true';
+							var reurl = HONOR.Config.baseUrl + '?showResult=true';
 						}else{
 							var reurl = HONOR.Config.baseUrl;
 						}
@@ -553,7 +552,7 @@
 			isLogin: isLogin,
 			Logout: Logout
 		};
-	};
+	})();
 
 	// 启动飞船
 	HONOR.Landing.init();
