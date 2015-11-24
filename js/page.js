@@ -13,7 +13,8 @@
 		var ship = $('.panel'),
 			dialog = $('.text-container'),
 			preloadBox = $('#preload'),
-			percentBox = $("#percentage");
+			percentBox = $("#percentage"),
+			UFO = $('#ufo');
 
 		var preloadData = {
 			imgs:[
@@ -50,8 +51,6 @@
 			]
 		};
 
-
-
 		var init = function(){
 			// 渲染加载模版
 			var imgHTML = template("loadImgBox", preloadData);
@@ -75,6 +74,8 @@
 					}
 				});
 			});
+
+			randomUFO();
 
 			// showShip();
 			startTyping(text, 50, "test");
@@ -149,6 +150,14 @@
 			$('.astronaut-5').addClass('anim-jump');
 			$('.astronaut-5 .shadow').addClass('anim-shadow');
 		};
+
+		var randomUFO = function(){
+			var t = Math.random() * 768;
+		    var l = Math.random() * 1280;
+		    var time = Math.random() * 5000;
+
+		    $('#ufo').animate({top: t + 'px', left: l + 'px'}, time, 'swing', randomUFO);
+		}
 		
 		return {
 			init: init
