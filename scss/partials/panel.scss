@@ -9,6 +9,8 @@
 	margin-left: -1/2 * percentage(1603/1920);
 	background: url(../images/ship.png) center bottom no-repeat;
 	background-size: contain;
+	-ms-behavior: url(../backgroundsize.min.htc);
+	-ms-behavior: url(../backgroundsize.min.htc);
 	.statusBox{
 		position: absolute;
 		width: percentage(345/1603);
@@ -42,10 +44,12 @@
 			display: block;
 			background: url(../images/panel-status-default.png) center bottom no-repeat;
 			background-size: contain;
+			-ms-behavior: url(../backgroundsize.min.htc);
 		}
 		.start, .next, .submit{
 			background: url(../images/panel-status-progress.png) center bottom no-repeat;
 			background-size: contain;
+			-ms-behavior: url(../backgroundsize.min.htc);
 		}
 	}
 }

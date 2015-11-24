@@ -1,0 +1,21 @@
+{
+  "name": "honor_p_2",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "RainKolWa"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/RainKolwa/honor_p_2",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "background-size-polyfill": "git@github.com:louisremi/background-size-polyfill.git#~0.2.0"
+  }
+}

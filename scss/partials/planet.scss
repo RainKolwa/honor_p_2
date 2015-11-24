@@ -9,6 +9,7 @@
 		margin-left: -1/2 * percentage(1287/$defaultWidth);
 		background: url(../images/planet-1.png) no-repeat;
 		background-size: contain;
+		-ms-behavior: url(../backgroundsize.min.htc);
 		opacity: .2;
 		@include transformScale(0);
 		.astronaut-1{
@@ -19,6 +20,7 @@
 			top: 8%;
 			background: url(../images/astronaut-first.png) center center no-repeat;
 			background-size: contain;
+			-ms-behavior: url(../backgroundsize.min.htc);
 		}
 		.astronaut-5{
 			width: percentage(88/1287);
@@ -28,6 +30,7 @@
 			top: 16%;
 			background: url(../images/astronaut-5th.png) center center no-repeat;
 			background-size: contain;
+			-ms-behavior: url(../backgroundsize.min.htc);
 			.shadow{
 				position: absolute;
 				width: 100%;
@@ -36,6 +39,7 @@
 				left: -10px;
 				background: url(../images/astronaut-5th-shadow.png) no-repeat;
 				background-size: 100%;
+				-ms-behavior: url(../backgroundsize.min.htc);
 			}
 		}
 		.astronaut-6{
@@ -48,6 +52,7 @@
 			top: 6%;
 			background: url(../images/astronaut-last.png) center center no-repeat;
 			background-size: contain;
+			-ms-behavior: url(../backgroundsize.min.htc);
 		}
 		.as-6-diag{
 			width: percentage(124/1287);
@@ -58,6 +63,7 @@
 			top: 6%;
 			background: url(../images/astronaut-last-dialog.png) center center no-repeat;
 			background-size: contain;
+			-ms-behavior: url(../backgroundsize.min.htc);
 		}
 		.wormhole-right{
 			width: percentage(196/1287);
@@ -67,6 +73,7 @@
 			top: 1%;
 			background: url(../images/wormhole.png) center center no-repeat;
 			background-size: contain;
+			-ms-behavior: url(../backgroundsize.min.htc);
 		}
 		.radar-container{
 			width: percentage(193/1287);
@@ -92,6 +99,7 @@
 				top: 0;
 				background: url(../images/radar-alert.png) center center no-repeat;
 				background-size: contain;
+				-ms-behavior: url(../backgroundsize.min.htc);
 			}
 			.lightning{
 				z-index: 2;
@@ -103,6 +111,7 @@
 				top: 5%;
 				background: url(../images/lightning.png) no-repeat;
 				background-size: contain;
+				-ms-behavior: url(../backgroundsize.min.htc);
 			}
 		}
 	}
@@ -115,6 +124,7 @@
 		top: 20%;
 		background: url(../images/planet-2.png) no-repeat;
 		background-size: contain;
+		-ms-behavior: url(../backgroundsize.min.htc);
 		@include transformScale(0);
 	}
 	.planet-3{
@@ -126,6 +136,7 @@
 		top: 25%;
 		background: url(../images/planet-3.png) no-repeat;
 		background-size: contain;
+		-ms-behavior: url(../backgroundsize.min.htc);
 		@include transformScale(0);
 	}
 	.planet-4{
@@ -137,6 +148,7 @@
 		top: 36%;
 		background: url(../images/planet-4.png) no-repeat;
 		background-size: contain;
+		-ms-behavior: url(../backgroundsize.min.htc);
 		@include transformScale(0);
 	}
 	.planet-5{
@@ -148,6 +160,7 @@
 		top: 33%;
 		background: url(../images/planet-5.png) no-repeat;
 		background-size: contain;
+		-ms-behavior: url(../backgroundsize.min.htc);
 		@include transformScale(0);
 	}
 }
