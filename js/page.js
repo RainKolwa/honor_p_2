@@ -1,7 +1,15 @@
 (function ($, imagesLoaded, TL, template, audiojs, cityJson) {
 
+	var isProduction = false;
+
 	var HONOR = {};
 	window.HONOR = HONOR;
+
+	HONOR.Config = {
+		baseUrl: isProduction ? "http://campaign.honor.cn/planet/star" : "http://campaign.honor.cn/test/planet/star",
+		api: "http://campaign.honor.cn/awards-inform/star/src/save.php?action=",
+		dataType: isProduction ? "json" : "jsonp"
+	};
 
 	// 入场动画
 	HONOR.Landing = (function(){
@@ -88,6 +96,10 @@
 				$(this).remove();
 				// UFO浪
 				randomUFO();
+				// 如是登录回调且已答过题
+				if(window.location.href.indexOf('showResult') > -1){
+					HONOR.Result.requestResult();
+				}
 			});
 		};
 
@@ -338,7 +350,7 @@
 			// success回调
 			setTimeout(function(){
 				HONOR.Result.init();
-				HONOR.Result.displayResult();	
+				HONOR.Result.displayResult('type-2');//恭喜您！获得荣耀星球勋章一枚	
 			},1000)
 		}
 
@@ -356,27 +368,134 @@
 	HONOR.Result = (function(){
 
 		var resultBox = $('.result');
+		var provinceBox = resultBox.find('.optionbox');
+		var cityBox = resultBox.find('.suboption');
+		var provinceSel = resultBox.find('.selectbox');
+		var citySel = resultBox.find('.subselect');
 		
 		var init = function(){
-			var cityHtml = '';
-			console.log(cityJson);
-			cityJson.forEach(function(v, i){
-				console.log(v.n, i)
-				cityHtml += "<li data-index='"+i+"'>"+v.n+"</li>";
-			})
-			console.log(cityHtml)
 			bindEvents();
 		};
 
 		var bindEvents = function(){
+			// 打开抽奖
+			resultBox.on('click', '.start', function(){
+				HONOR.Api.isLogin(true);
+			})
 			resultBox.on('click', '.hideit', function(){
 				hideResult();
 			})
+
+			// 
+			provinceBox.on('click', 'li', function(){
+				provinceSel.text($(this).text());
+				var id = parseInt($(this).data('index'));
+				renderCity(id);
+				citySel.text('选择市');
+				provinceBox.hide();
+			})
+			provinceSel.on('click', function(){
+				provinceBox.stop().slideToggle();
+			})
+
+			// 
+			cityBox.on('click', 'li', function(){
+				citySel.text($(this).text());
+				var id = parseInt($(this).data('index'));
+				cityBox.hide();
+			})
+			citySel.on('click', function(){
+				cityBox.stop().slideToggle();
+			})
+
+			// 提交
+			resultBox.on('click', '.submit', function(){
+				
+				var form = $(this).parent().find('.form');
+				var mobile = form.find('#mobile').val();
+				var truename = form.find('#name').val();
+				var province = form.find('.selectbox').text();
+				var city = form.find('.subselect').text();
+				var address = form.find('#addr').val();
+
+				// validate
+				if(mobile === '' || truename === '' || province === '' || province === '选择省' || city === '' || city === '选择市' || address === '' || address === '输入详细地址'){
+					alert('请输入完整的信息！');
+					return;
+				}
+				
+				// submit
+				$.ajax({
+					url: HONOR.Config.api + 'upinfo',
+					method: 'POST',
+					dataType: HONOR.Config.dataType,
+					data: {mobile: mobile,truename: truename,province: province,city: city,address: address},
+					success: function(rs){
+						alert('提交成功！');
+					}
+				})
+			})
 		};
 
-		var displayResult = function(){
+		var initAddress = function(){
+			var province = '<ul>';
+			cityJson.forEach(function(v, i){
+				province += "<li data-index='"+i+"'>"+v.n+"</li>";
+			})
+			province += '</ul>';
+			provinceBox.html(province);
+		};
+
+		var renderCity = function(id){
+			var cities = cityJson[id].s;
+			var city = '<ul>';
+			cities.forEach(function(v, i){
+				city += "<li data-index='"+i+"'>"+v.n+"</li>";
+			})
+			city += '</ul>';
+			cityBox.html(city);
+		};
+
+		var displayResult = function(type, code){
 			resultBox.show();
+			var Type = '.' + type;
+			if(type === 'type-4'){
+				// 如是优购码，填充
+				resultBox.find('.box-code span').text(code);
+			}
+			resultBox.find(Type).show().siblings('.type-box').hide();
 			TL.to(resultBox, 0.4, {scale: 1, opacity: 1})
+		};
+
+		var requestResult = function(){
+			$.ajax({
+				url: HONOR.Config.api + 'lottery',
+				method: 'GET',
+				dataType: HONOR.Config.dataType,
+				success: function(rs){
+					console.log(rs);
+					// 
+					if(rs.code === 0){
+						switch(rs.data.prize){
+							case 1://实物奖品
+								displayResult('type-5');
+								initAddress();
+								break;
+							case 2://虚拟优购码
+								displayResult('type-4',rs.data.coupon);
+								break;
+							default://未中奖
+								displayResult('type-1');
+						}
+					}else if(rs.code === 1){
+						// 今天已经抽过
+						displayResult('type-3');
+					}else if(rs.code === -1){
+						// 未登录 (理论上不可能)
+						window.location.href = rs.data.honor + "&reurl="+ encodeURIComponent(HONOR.Config.baseUrl);
+					}
+				}
+			})
 		};
 
 		var hideResult = function(){
@@ -386,9 +505,55 @@
 		return {
 			init: init,
 			displayResult: displayResult,
-			hideResult: hideResult
+			hideResult: hideResult,
+			requestResult: requestResult,
+			initAddress: initAddress
 		};
 	})();
+
+	// 登录/注销
+	HONOR.Api = function(){
+		var isLogin = function(showResult){
+			$.ajax({
+				url: HONOR.Config.api + 'islogin',
+				method: 'GET',
+				dataType: HONOR.Config.dataType,
+				success: function(rs){
+					if(rs.code === -1){
+						// 未登录
+						if(showResult){
+							var reurl = HONOR.Config.baseUrl + '&showResult=true';
+						}else{
+							var reurl = HONOR.Config.baseUrl;
+						}
+						window.location.href = rs.data.honor + "&reurl="+ encodeURIComponent(reurl);
+					}else if(rs.code === 0){
+						// 已登录
+						if(showResult){
+							HONOR.Result.requestResult();
+						}
+					}
+				}
+			})
+		};
+
+		var Logout = function(){
+			$.ajax({
+				url: HONOR.Config.api + 'logout',
+				method: 'GET',
+				dataType: HONOR.Config.dataType,
+				success: function(rs){
+					// console.log(rs);
+					alert("注销成功");
+				}
+			})
+		};
+
+		return {
+			isLogin: isLogin,
+			Logout: Logout
+		};
+	};
 
 	// 启动飞船
 	HONOR.Landing.init();
@@ -396,7 +561,9 @@
 	// 测试
 	// HONOR.Exam.showQuestion(0);
 	// HONOR.Result.init();
-	HONOR.Result.displayResult();
+	// HONOR.Result.init()
+	// HONOR.Result.initAddress()
+	// HONOR.Result.displayResult('type-5');
 
 })(jQuery, imagesLoaded, TweenLite, template, audiojs, cityJson);
 

@@ -1,6 +1,6 @@
 .result{
 	opacity: 0;
-	z-index: 10;
+	z-index: 102;
 	position: fixed;
 	top: 50%;
 	left: 50%;
@@ -53,17 +53,10 @@
 		font-size: 16px;
 		color: #fff;
 	}
-	.type-1{
-		display: none;
-	}
-	.type-2{
-		display: none;
-	}
-	.type-3{
+	.type-box{
 		display: none;
 	}
 	.type-4{
-		display: none;
 		h3{
 			margin-top: 100px;
 		}
@@ -91,6 +84,9 @@
 				margin-top: 21px;
 				text-align: left;
 			}
+		}
+		p{
+			margin-top: 12px;
 		}
 		.form{
 			position: relative;
@@ -122,7 +118,7 @@
 				left: 99px;
 				top: 139px;
 			}
-			.selectbox{
+			.selectbox, .subselect{
 				position: absolute;
 				cursor: pointer;
 				width: 228px;
@@ -136,6 +132,29 @@
 			.subselect{
 				left: 362px;
 			}
+			.optionbox, .suboption{
+				display: none;
+				z-index: 2;
+				position: absolute;
+				overflow-y: scroll;
+				left: 93px;
+				top: 111px;
+				width: 234px;
+				height: 100px;
+				background: #fff;
+				li{
+					padding-left: 10px;
+					cursor: pointer;
+					&:hover{
+						color: #000;
+						background: #D3D3D3;
+					}
+				}
+			}
+			.suboption{
+				left: 359px;
+				width: 228px;
+			}
 		}
 		.button{
 			margin: 21px auto 0;
@@ -143,7 +162,6 @@
 
 	}
 	.type-6{
-		display: none;
 		padding-top: 50px;
 		.innerbox{
 			overflow-y: scroll;
