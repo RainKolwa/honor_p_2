@@ -12,16 +12,21 @@
 	};
 
 	HONOR.Public = (function(){
-		
-		var isltIE8 = function(){
-			if($.browser.msie && parseFloat($.browser.version) < 9){
-				alert('ie8');
-				return true;
-			}else{
-				return false;
-			}
-		};
 
+		var Sys = {};
+		var ua = navigator.userAgent.toLowerCase();
+		var s;
+		(s = ua.match(/rv:([\d.]+)\) like gecko/)) ? Sys.ie = s[1] :
+		(s = ua.match(/msie ([\d.]+)/)) ? Sys.ie = s[1] :
+		(s = ua.match(/firefox\/([\d.]+)/)) ? Sys.firefox = s[1] :
+		(s = ua.match(/chrome\/([\d.]+)/)) ? Sys.chrome = s[1] :
+		(s = ua.match(/opera.([\d.]+)/)) ? Sys.opera = s[1] :
+		(s = ua.match(/version\/([\d.]+).*safari/)) ? Sys.safari = s[1] : 0;
+
+		if (Sys.ie){
+		    var isltIE8 = parseInt(Sys.ie) < 9 ? true : false;
+		}
+		
 		return {
 			isltIE8: isltIE8
 		}
@@ -93,6 +98,9 @@
 					if(img_count == allimg_count){
 						// UFO升顶
 						TL.to(UFO, 0.8, {left: "45%", top: "-10%", onComplete: completeLoadingHandler})
+						if(HONOR.Public.isltIE8){
+							$('.planets').hide();
+						}
 					}
 				});
 			});
@@ -178,11 +186,13 @@
 				$('.astronaut-5').addClass('anim-jump');
 				$('.astronaut-5 .shadow').addClass('anim-shadow');
 			}else{
+				$('.planets').show();	
 				planet1.css({left: '50%', top: '20%'});
 				planet2.css({left: '-3%', top: '10%'});
 				planet3.css({left: '20%', top: '-8%'});
 				planet4.css({left: '75%', top: '10%'});
 				planet5.css({left: '85%', top: '60%'});
+				completePlanetHandler();
 			}
 		};
 
@@ -190,7 +200,6 @@
 			// 显示猜题入口
 			HONOR.Panel.init();
 			HONOR.Panel.setStatus();
-			
 		};
 
 		var randomUFO = function(){
@@ -352,7 +361,12 @@
 			var html = template('examView', questions[index]);
 			examBox.html(html);
 			examBox.show();
-			TL.from(examBox, 0.4, {scale: 1.2, opacity: 0})
+			if(!HONOR.Public.isltIE8){
+				alert('no ie')
+				TL.from(examBox, 0.4, {scale: 1.2, opacity: 0})
+			}else{
+				examBox.css('opacity', 1);
+			}
 		};
 
 		var randomQuestion = function(){
@@ -545,9 +559,9 @@
 					if(rs.code === -1){
 						// 未登录
 						if(showResult){
-							var reurl = HONOR.Config.baseUrl + '?showResult=true';
+							reurl = HONOR.Config.baseUrl + '?showResult=true';
 						}else{
-							var reurl = HONOR.Config.baseUrl;
+							reurl = HONOR.Config.baseUrl;
 						}
 						window.location.href = rs.data.honor + "&reurl="+ encodeURIComponent(reurl);
 					}else if(rs.code === 0){
