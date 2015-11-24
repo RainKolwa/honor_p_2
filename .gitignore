@@ -1,4 +1,7 @@
 node_modules/
 bower_components/
-dist/
+dist/main.css
+dist/lib.css
+dist/main.js
+dist/lib.js
 npm-debug.log
