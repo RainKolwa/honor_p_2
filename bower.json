@@ -16,6 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "background-size-polyfill": "git@github.com:louisremi/background-size-polyfill.git#~0.2.0"
+    "background-size-polyfill": "git@github.com:louisremi/background-size-polyfill.git#~0.2.0",
+    "audiojs": "git@github.com:kolber/audiojs.git"
   }
 }

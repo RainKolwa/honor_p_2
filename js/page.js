@@ -1,4 +1,4 @@
-(function ($, TL, TM, template) {
+(function ($, TL, TM, template, audiojs) {
 
 	var HONOR = {};
 	window.HONOR = HONOR;
@@ -16,6 +16,11 @@
 		var init = function(){
 			// showShip();
 			startTyping(text, 50, "test");
+
+			// 初始化音频
+			audiojs.events.ready(function() {
+				var as = audiojs.createAll();
+			});
 		};
 
 		var type = function(){
@@ -309,6 +314,6 @@
 	// HONOR.Result.init();
 	// HONOR.Result.displayResult();
 
-})(jQuery, TweenLite, TweenMax, template);
+})(jQuery, TweenLite, TweenMax, template, audiojs);
 
 
