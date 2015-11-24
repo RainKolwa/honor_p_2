@@ -1,5 +1,4 @@
 .result{
-	display: none;
 	opacity: 0;
 	z-index: 10;
 	position: fixed;
@@ -20,32 +19,146 @@
 		top: 0;
 	}
 	.button{
+		display: block;
+		margin: 50px auto 0;
 		width: 204px;
 		height: 51px;
+		font-size: 18px;
+		color: #fff;
+		text-shadow: 0 0 10px #27b6ff;
+		line-height: 51px;
+		text-align: center;
 		background: url(../images/btn-wrap.png) no-repeat;
 	}
+	h3, p{
+		font-size: 28px;
+		color: #fff;
+		text-align: center;
+		margin-top: 200px;
+		font-weight: normal;
+		text-shadow: 0 0 10px #27b6ff;
+	}
+	p{
+		font-size: 18px;
+		margin-top: 20px;
+		line-height: 28px;
+	}
+	.box-code{
+		width: 435px;
+		height: 118px;
+		background: url(../images/box-code.png) no-repeat;
+		text-align: center;
+		line-height: 100px;
+		margin: 50px auto;
+		font-size: 16px;
+		color: #fff;
+	}
 	.type-1{
-		h3, p{
-			font-size: 28px;
-			color: #fff;
-			text-align: center;
-			margin-top: 200px;
-			font-weight: normal;
-			text-shadow: 0 0 10px #27b6ff;
+		display: none;
+	}
+	.type-2{
+		display: none;
+	}
+	.type-3{
+		display: none;
+	}
+	.type-4{
+		display: none;
+		h3{
+			margin-top: 100px;
 		}
 		p{
-			font-size: 18px;
-			margin-top: 20px;
-			line-height: 28px;
+			a{
+				color: #00c9ff;
+				text-decoration: underline;
+				margin: 0 5px;
+			}
 		}
-		a{
-			display: block;
-			margin: 50px auto 0;
-			font-size: 18px;
-			color: #fff;
-			text-shadow: 0 0 10px #27b6ff;
-			line-height: 51px;
-			text-align: center;
+	}
+	.type-5{
+		.hd{
+			margin-left: 300px;
+			margin-top: 65px;
+			overflow: hidden;
+			img{
+				width: 98px;
+				float: left;
+			}
+			h3{
+				float: left;
+				width: 300px;
+				margin-left: 16px;
+				margin-top: 21px;
+				text-align: left;
+			}
+		}
+		.form{
+			position: relative;
+			margin: 13px auto 0;
+			width: 591px;
+			height: 174px;
+			background: url(../images/form-prize.png) no-repeat;
+			input{
+				position: absolute;
+				border: 0 none;
+				color: #fff;
+				background: none;
+			}
+			#mobile{
+				width: 168px;
+				height: 26px;
+				left: 100px;
+				top: 10px;
+			}
+			#name{
+				width: 168px;
+				height: 26px;
+				left: 415px;
+				top: 10px;
+			}
+			#addr{
+				width: 484px;
+				height: 26px;
+				left: 99px;
+				top: 139px;
+			}
+			.selectbox{
+				position: absolute;
+				cursor: pointer;
+				width: 228px;
+				padding-left: 5px;
+				height: 32px;
+				left: 95px;
+				top: 76px;
+				line-height: 32px;
+				color: #fff;
+			}
+			.subselect{
+				left: 362px;
+			}
+		}
+		.button{
+			margin: 21px auto 0;
+		}
+
+	}
+	.type-6{
+		display: none;
+		padding-top: 50px;
+		.innerbox{
+			overflow-y: scroll;
+			height: 400px;
+			width: 80%;
+			margin: 50px 0 0 100px;
+			padding-right: 50px;
+		}
+		h3{
+			margin-top: 0;
+		}
+		p{
+			line-height: 36px;
+			text-align: left;
+			margin: 20px auto 0;
 		}
 	}
 }

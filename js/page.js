@@ -1,4 +1,4 @@
-(function ($, imagesLoaded, TL, template, audiojs) {
+(function ($, imagesLoaded, TL, template, audiojs, cityJson) {
 
 	var HONOR = {};
 	window.HONOR = HONOR;
@@ -9,6 +9,7 @@
 		var text = "他们有着独特的个性、出众的外表，拥有荣耀星人的特质，他们是我们的明星战队！在荣耀2周年狂欢Party现场，你们可以见到他们本人哦！让我们一起来猜一下，分别都有谁？",
 			delay = 0,
 			currentChar = 1;
+
 
 		var ship = $('.panel'),
 			dialog = $('.text-container'),
@@ -130,6 +131,7 @@
 		};
 
 		var showPlanet = function(){
+			// 星球动画
 			var planet1 = $('.planet-1');
 			var planet2 = $('.planet-2');
 			var planet3 = $('.planet-3');
@@ -140,18 +142,19 @@
 			TL.to(planet3, 10, {left: '20%', top: '-8%', scale: 1, ease: 'Linear', delay: 1.5});
 			TL.to(planet4, 8, {left: '75%', top: '10%', scale: 1, ease: 'Linear', delay: 0.2});
 			TL.to(planet5, 7, {left: '85%', top: '60%', scale: 1, ease: 'Linear', delay: 0.8});
-		};
-
-		var completePlanetHandler = function(){
-			// 显示猜题入口
-			HONOR.Panel.init();
-			HONOR.Panel.setStatus();
 			// 小物件css动画
 			$('.radar-container .alert').addClass('anim-alert');
 			$('.radar-container .lightning').addClass('anim-lightning');
 			$('.astronaut-1').addClass('anim-rotate');
 			$('.astronaut-5').addClass('anim-jump');
 			$('.astronaut-5 .shadow').addClass('anim-shadow');
+		};
+
+		var completePlanetHandler = function(){
+			// 显示猜题入口
+			HONOR.Panel.init();
+			HONOR.Panel.setStatus();
+			
 		};
 
 		var randomUFO = function(){
@@ -355,6 +358,13 @@
 		var resultBox = $('.result');
 		
 		var init = function(){
+			var cityHtml = '';
+			console.log(cityJson);
+			cityJson.forEach(function(v, i){
+				console.log(v.n, i)
+				cityHtml += "<li data-index='"+i+"'>"+v.n+"</li>";
+			})
+			console.log(cityHtml)
 			bindEvents();
 		};
 
@@ -386,8 +396,8 @@
 	// 测试
 	// HONOR.Exam.showQuestion(0);
 	// HONOR.Result.init();
-	// HONOR.Result.displayResult();
+	HONOR.Result.displayResult();
 
-})(jQuery, imagesLoaded, TweenLite, template, audiojs);
+})(jQuery, imagesLoaded, TweenLite, template, audiojs, cityJson);
 
 
