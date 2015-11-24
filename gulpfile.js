@@ -9,10 +9,10 @@ var paths = {
 		'node_modules/jquery/dist/jquery.min.js',
 		'node_modules/imagesloaded/imagesloaded.pkgd.min.js',
 		'node_modules/art-template/dist/template.js',
-		'node_modules/gsap/src/minified/TweenLite.min.js'
-	],
-	styles: [
-	]
+		'node_modules/gsap/src/minified/TweenMax.min.js'
+	]// ,
+	// styles: [
+	// ]
 }
 
 // 检查js
@@ -29,10 +29,10 @@ gulp.task('sass', function() {
         .pipe(gulp.dest('./dist'))
         .pipe(browserSync.stream());
 
-    gulp.src(paths.styles)
-    	.pipe(concat('lib.css'))
-        .pipe(gulp.dest('./dist'))
-        .pipe(browserSync.stream());
+    // gulp.src(paths.styles)
+    // 	.pipe(concat('lib.css'))
+    //     .pipe(gulp.dest('./dist'))
+    //     .pipe(browserSync.stream());
 });
 
 // 合并js

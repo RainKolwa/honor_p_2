@@ -1,4 +1,10 @@
 .loadBox{
 	z-index: 100;
 	background: #000;
+	#percentage{
+		color: #666;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+	}
 }

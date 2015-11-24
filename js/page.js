@@ -66,16 +66,12 @@
 					var percentage = Math.floor((img_count/allimg_count)*100);
 					percentBox.html(percentage+"%");
 					if(img_count == allimg_count){
-						$('#loading').fadeOut(100,function(){
-							$(this).remove();
-							// 
-							// 火箭升顶
-						});
+						// UFO升顶
+						console.log('ufo go top');
+						TL.to(UFO, 0.8, {left: "45%", top: "-10%", onComplete: completeLoadingHandler})
 					}
 				});
 			});
-
-			randomUFO();
 
 			// showShip();
 			startTyping(text, 50, "test");
@@ -83,6 +79,16 @@
 			// 初始化音频
 			audiojs.events.ready(function() {
 				var as = audiojs.createAll();
+			});
+		};
+
+		var completeLoadingHandler = function(){
+			// 移除loading
+			$('#loading').fadeOut(100,function(){
+				console.log('remove load')
+				$(this).remove();
+				// UFO浪
+				randomUFO();
 			});
 		};
 
@@ -96,7 +102,6 @@
 				{
 					setTimeout(type, delay);
 				}else{
-					console.log("complete");
 					// 停顿1s执行
 					setTimeout(function(){
 						// 隐藏对话框
