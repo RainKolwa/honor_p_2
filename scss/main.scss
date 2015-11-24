@@ -3,7 +3,7 @@ $baseFontsize: 14px;
 $defaultWidth: 1920;
 $defaultHeight: 1080;
 
-//mixins
+// mixins
 @mixin transformScale($val){
 	-webkit-transform: scale($val);
 	-moz-transform: scale($val);
@@ -12,10 +12,9 @@ $defaultHeight: 1080;
 	transform: scale($val);
 }
 
-
-
 // imports
 @import './partials/reset';
+@import './partials/loading';
 @import './partials/public';
 @import './partials/scene';
 @import './partials/panel';

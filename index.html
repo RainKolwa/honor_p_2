@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="uft8" />
-	<title>猜明星</title>
-	<!-- include css files -->
+	<meta charset="uft8">
+	<title>荣耀猜明星</title>
+	<!-- Include css files -->
 	<link rel="stylesheet" type="text/css" href="dist/lib.css">
 	<link rel="stylesheet" type="text/css" href="dist/main.css">
 </head>
 <body>
+	<!-- Preload Resource -->
+	<div id="loading" class="loadBox full">
+		<div id="percentage"></div>
+	</div>
+	<div id="preload" style="display:none">
+		<!--template here-->
+	</div>
+
 	<!-- Main -->
 	<div class="scene full">
 		<!--标题-->
@@ -81,6 +89,11 @@
 	<div></div>
 
 	<!-- Templates -->
+	<script id="loadImgBox" type="text/html">
+		{{each imgs as value i}}
+			<img src="images/{{ value }}" />
+	    {{/each}}
+	</script>
 	<script id="examView" type="text/html">
 		<div class="imgBox">
 			<table><tr><td>
@@ -114,5 +127,6 @@
 	<script type="text/javascript" src="dist/lib.js"></script>
 	<script type="text/javascript" src="dist/audio.min.js"></script>
 	<script type="text/javascript" src="dist/main.js"></script>
+
 </body>
 </html>

@@ -1,4 +1,4 @@
-(function ($, TL, TM, template, audiojs) {
+(function ($, imagesLoaded, TL, template, audiojs) {
 
 	var HONOR = {};
 	window.HONOR = HONOR;
@@ -6,14 +6,76 @@
 	// 入场动画
 	HONOR.Landing = (function(){
 
-		var text = " 他们有着独特的个性、出众的外表，拥有荣耀星人的特质，他们是我们的明星战队！在荣耀2周年狂欢Party现场，你们可以见到他们本人哦！让我们一起来猜一下，分别都有谁？",
+		var text = "他们有着独特的个性、出众的外表，拥有荣耀星人的特质，他们是我们的明星战队！在荣耀2周年狂欢Party现场，你们可以见到他们本人哦！让我们一起来猜一下，分别都有谁？",
 			delay = 0,
 			currentChar = 1;
 
 		var ship = $('.panel'),
-			dialog = $('.text-container');
+			dialog = $('.text-container'),
+			preloadBox = $('#preload'),
+			percentBox = $("#percentage");
+
+		var preloadData = {
+			imgs:[
+				"astronaut-5th-shadow.png",
+				"astronaut-5th.png",
+				"astronaut-first.png",
+				"astronaut-last-dialog.png",
+				"astronaut-last.png",
+				"bg.jpg",
+				"box-exam.png",
+				"box-result.png",
+				"box-txt.png",
+				"btn-wrap.png",
+				"lightning.png",
+				"line.png",
+				"logo.png",
+				"panel-status-default.png",
+				"panel-status-progress.png",
+				"planet-1.png",
+				"planet-2.png",
+				"planet-3.png",
+				"planet-4.png",
+				"planet-5.png",
+				"radar-alert.png",
+				"radar.png",
+				"ship.png",
+				"sqr-txt.png",
+				"star-1.png",
+				"star-2.png",
+				"star-3.png",
+				"star-bg.png",
+				"ufo.png",
+				"wormhole.png"
+			]
+		};
+
+
 
 		var init = function(){
+			// 渲染加载模版
+			var imgHTML = template("loadImgBox", preloadData);
+			preloadBox.html(imgHTML);
+
+			var imgs = preloadBox.find('img'),
+				allimg_count = imgs.length,
+				img_count = 0;
+
+			imgs.each(function(){
+				$(this).imagesLoaded(function(){
+					img_count++;
+					var percentage = Math.floor((img_count/allimg_count)*100);
+					percentBox.html(percentage+"%");
+					if(img_count == allimg_count){
+						$('#loading').fadeOut(100,function(){
+							$(this).remove();
+							// 
+							// 火箭升顶
+						});
+					}
+				});
+			});
+
 			// showShip();
 			startTyping(text, 50, "test");
 
@@ -314,6 +376,6 @@
 	// HONOR.Result.init();
 	// HONOR.Result.displayResult();
 
-})(jQuery, TweenLite, TweenMax, template, audiojs);
+})(jQuery, imagesLoaded, TweenLite, template, audiojs);
 
 

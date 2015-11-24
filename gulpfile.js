@@ -7,8 +7,9 @@ var browserSync = require('browser-sync').create();
 var paths = {
 	scripts: [
 		'node_modules/jquery/dist/jquery.min.js',
+		'node_modules/imagesloaded/imagesloaded.pkgd.min.js',
 		'node_modules/art-template/dist/template.js',
-		'node_modules/gsap/src/minified/TweenMax.min.js'
+		'node_modules/gsap/src/minified/TweenLite.min.js'
 	],
 	styles: [
 	]
