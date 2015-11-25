@@ -1,5 +1,6 @@
 node_modules/
-bower_components/
+bower_components/audiojs
+bower_components/background-size-polyfill
 dist/main.css
 dist/lib.css
 dist/main.js
