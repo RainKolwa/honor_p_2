@@ -11,7 +11,7 @@
 	margin-left: -1/2 * percentage(876/$defaultWidth);
 	background: url(../images/box-exam.png) center center no-repeat;
 	background-size: contain;
-	-ms-behavior: url(../backgroundsize.min.htc);
+	-ms-behavior: url(backgroundsize.min.htc);
 	.imgBox{
 		position: absolute;
 		width: percentage(420/876);
@@ -20,7 +20,7 @@
 		top: 0;
 		background: url(../images/star-bg.png) center bottom no-repeat;
 		background-size: 80%;
-		-ms-behavior: url(../backgroundsize.min.htc);
+		-ms-behavior: url(backgroundsize.min.htc);
 		table{
 			width: 100%;
 			height: 80%;
@@ -67,7 +67,7 @@
 			top: percentage(108/556);
 			background: url(../images/sqr-txt.png) no-repeat;
 			background-size: contain;
-			-ms-behavior: url(../backgroundsize.min.htc);
+			-ms-behavior: url(backgroundsize.min.htc);
 			&.a1,&.a2,&.a3{
 				font-size: 30px;
 				width: percentage(82/442);
