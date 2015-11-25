@@ -105,7 +105,6 @@
 				});
 			});
 
-			// showShip();
 			if(window.location.href.indexOf('showResult') === -1){
 				startTyping(text, 100, "test");
 			}
@@ -117,9 +116,14 @@
 		};
 
 		var completeLoadingHandler = function(){
+
+			// 显示飞船
+			showShip();
+			
 			// 移除loading
 			$('#loading').fadeOut(100,function(){
 				$(this).remove();
+
 				// UFO浪
 				if(!HONOR.Public.isltIE8){
 					randomUFO();
@@ -167,7 +171,7 @@
 		};
 
 		var showShip = function(){
-			TL.from(ship, 2, {bottom: -383, opacity: 0.5});
+			TL.from(ship, 2, {bottom: -383});
 			setTimeout(function(){
 				$('.line').fadeIn('fast').fadeOut('fast').fadeIn('fast');
 			}, 2000)
