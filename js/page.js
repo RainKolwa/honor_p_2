@@ -236,9 +236,17 @@
 					HONOR.Exam.randomQuestion();
 					HONOR.Panel.setStatus();
 				}else if($(this).hasClass('next')){
+					if($('.a1').text() === '' || $('.a2').text() === ''){
+						alert('请完善答案');
+						return;
+					}
 					HONOR.Exam.randomQuestion();
 					HONOR.Panel.setStatus();
 				}else if($(this).hasClass('submit')){
+					if($('.a1').text() === '' || $('.a2').text() === ''){
+						alert('请完善答案');
+						return;
+					}
 					HONOR.Exam.submitAnswers();
 				}else{
 					return;
@@ -343,9 +351,9 @@
 				var select = $(this).text();
 				if($('.paper a.a1').text() === ''){
 					$('.paper a.a1').text(select)
-				}else if($('.paper a.a2').text() === ''){
+				}else if($('.paper a.a2').text() === '' && select !== $('.paper a.a1').text()){
 					$('.paper a.a2').text(select)
-				}else if($('.paper a.a3').text() === ''){
+				}else if($('.paper a.a3').text() === '' && select !== $('.paper a.a2').text()){
 					$('.paper a.a3').text(select)
 				}else{
 					alert('空格已填满！')
@@ -513,6 +521,7 @@
 				method: 'GET',
 				dataType: HONOR.Config.dataType,
 				success: function(rs){
+					alert(JSON.stringify(rs));
 					// 
 					if(rs.code === 0){
 						switch(rs.data.prize){
@@ -538,7 +547,11 @@
 		};
 
 		var hideResult = function(){
-			TL.to(resultBox, 0.4, {scale: 0.8, opacity: 0})
+			TL.to(resultBox, 0.4, {scale: 0.8, opacity: 0, onComplete: onHideCompleteHandle});
+		};
+
+		var onHideCompleteHandle = function(){
+			resultBox.hide();
 		};
 
 		return {
