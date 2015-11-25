@@ -190,16 +190,18 @@
 						if(HONOR.Public.isltIE8){
 							$('.planets').hide();
 						}
+
+						if(window.location.href.indexOf('showResult') === -1 && window.location.href.indexOf('showUname') === -1){
+							startTyping(text, 100, "test");
+						}
+						if(window.location.href.indexOf('showUname') > -1){
+							HONOR.Api.isLogin(false, true);
+						}
 					}
 				});
 			});
 
-			if(window.location.href.indexOf('showResult') === -1 && window.location.href.indexOf('showUname') === -1){
-				startTyping(text, 100, "test");
-			}
-			if(window.location.href.indexOf('showUname') > -1){
-				HONOR.Api.isLogin(false, true);
-			}
+			
 			// 初始化音频
 			// audiojs.events.ready(function() {
 			// 	var as = audiojs.createAll();
@@ -374,7 +376,9 @@
 					HONOR.Exam.init();
 					HONOR.Exam.randomQuestion();
 					HONOR.Panel.setStatus();
-					$('.examLight').show();
+					if(!HONOR.Public.isltIE8){
+						$('.examLight').show();
+					}
 					if($('.planets').length > 0){
 						TL.to($('.planets'),0.8,{y:100,opacity:0});
 						setTimeout(function(){

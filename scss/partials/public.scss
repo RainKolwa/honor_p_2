@@ -20,6 +20,7 @@ body{
 	background: url(../images/ufo.png) center center no-repeat;
 	background-size: contain;
 	-ms-behavior: url(backgroundsize.min.htc);
+	display: none\0;
 }
 #toggle-music {
     position: fixed;
@@ -27,10 +28,12 @@ body{
     top: 90px;
     width: 29px;
     height: 33px;
-    background: url(../images/stop-music.png) 0/100% no-repeat;
+    background: url(../images/stop-music.png) no-repeat;
+    background-size: contain;
 	-ms-behavior: url(backgroundsize.min.htc);
     &.status-stop {
-        background: url(../images/start-music.png) 0/100% no-repeat;
+        background: url(../images/start-music.png) no-repeat;
+        background-size: contain;
         -ms-behavior: url(backgroundsize.min.htc);
     }
     transform: scale(1.5);
