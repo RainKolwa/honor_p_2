@@ -562,12 +562,36 @@
 			cityBox.html(city);
 		};
 
-		var displayResult = function(type, code){
+		var displayResult = function(type, data){
 			resultBox.show();
 			var Type = '.' + type;
 			if(type === 'type-4'){
 				// 如是优购码，填充
-				resultBox.find('.box-code span').text(code);
+				resultBox.find('.box-data span').text(code);
+			}
+			if(type === 'type-7'){
+				// 个人中心
+				// data.uname
+				// data.prizeid
+				var userbox = resultBox.find('.type-7');
+				userbox.find('.hd span').text(data.uname);
+				if(data.prizeid > 0){
+					//中奖
+					var prizename;
+					if(data.types == 1){
+						prizename = '荣耀7i手机一部';
+					}
+					if(data.types == 2){
+						prizename = '荣耀7i手机优购码：<br>' + data.coupon;
+					}
+					var str = data.prizetime + '<br>荣耀明星集结号活动 您获得' + prizename;
+					userbox.find('.bd p').html(str);
+				}else{
+					//未中奖
+					userbox.find('.bd p').text('荣耀明星集结号活动 您暂时没有中奖信息哦！');
+				}
+
+				resultBox.find('')
 			}
 			resultBox.find(Type).show().siblings('.type-box').hide();
 			TL.to(resultBox, 0.4, {scale: 1, opacity: 1})
@@ -621,9 +645,48 @@
 		};
 	})();
 
+	// 用户
+	HONOR.User = (function(){
+		var nav = $('#nav');
+		var uname = nav.find('.username');
+		var ucenter = nav.find('#user-center');
+		var ruleAnchor = nav.find('.rule');
+		var shareBtn = nav.find('.share');
+
+		var init = function(){
+			bindEvents();
+		};
+		var bindEvents = function(){
+			ucenter.on('click', function(){
+				HONOR.Api.isLogin(false, true);
+			})
+			uname.on('click', function(){
+				HONOR.Api.isLogin(false, true);
+			})
+			ruleAnchor.on('click', function(){
+				HONOR.Result.displayResult('type-6');
+			})
+			shareBtn.on('click', function(){
+				var title = encodeURIComponent('荣耀星球二周年庆典'),
+	            pic = encodeURIComponent('http://campaign.honor.cn/test/planet/parade/pc/images/share.jpg'),
+	            l = encodeURIComponent(location.href);
+	        	openWin('http://v.t.sina.com.cn/share/share.php?title=' + title + '&url=' + l + '&pic=' + pic, 'weibo', 900, 600);
+			})
+		};
+		var openWin = function(url, name, width, height){
+		    var top = (window.screen.availHeight - 30 - height) / 2;
+		    var left = (window.screen.availWidth - 10 - width) / 2;
+		    window.open(url, name, 'height=' + height + ',width=' + width + ',top=' + top + ',left=' + left
+		    + ',toolbar=no,menubar=no,scrollbars=auto,resizeable=no,location=no,status=no');
+		};
+		return {
+			init: init
+		};
+	})();
+
 	// 登录/注销
 	HONOR.Api = (function(){
-		var isLogin = function(showResult){
+		var isLogin = function(showResult, showUserInfo){
 			$.ajax({
 				url: HONOR.Config.api + 'islogin',
 				method: 'GET',
@@ -641,6 +704,9 @@
 						// 已登录
 						if(showResult){
 							HONOR.Result.requestResult();
+						}
+						if(showUserInfo){
+							HONOR.Result.displayResult('type-7',rs.data);
 						}
 					}
 				}
@@ -667,6 +733,7 @@
 
 	// 启动飞船
 	HONOR.Landing.init();
+	HONOR.User.init();
 
 	// 测试
 	// HONOR.Exam.showQuestion(0);
