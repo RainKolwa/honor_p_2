@@ -40,7 +40,7 @@
 			currentChar = 1;
 
 
-		var ship = $('.panel'),
+		var ship = $('.ctlpanel'),
 			dialog = $('.text-container'),
 			preloadBox = $('#preload'),
 			percentBox = $("#percentage"),
@@ -225,7 +225,7 @@
 
 	// 控制面板
 	HONOR.Panel = (function(){
-		var panel = $('.panel'),
+		var panel = $('.ctlpanel'),
 			statusBox = panel.find('.statusBox');
 
 		var init = function(){
