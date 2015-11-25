@@ -122,6 +122,7 @@
 				randomUFO();
 				// 如是登录回调且已答过题
 				if(window.location.href.indexOf('showResult') > -1){
+					HONOR.Result.init();
 					HONOR.Result.requestResult();
 				}
 			});
