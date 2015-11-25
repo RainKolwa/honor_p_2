@@ -218,6 +218,7 @@
 				$('.radar-container .lightning').addClass('anim-lightning');
 				$('.astronaut-1').addClass('anim-rotate');
 				$('.astronaut-5').addClass('anim-jump');
+				setTimeout($('.astronaut-6').addClass('anim-jump'),500);
 				$('.astronaut-5 .shadow').addClass('anim-shadow');
 			}else{
 				$('.planets').show();	
