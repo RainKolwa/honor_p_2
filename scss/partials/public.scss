@@ -1,5 +1,5 @@
 body{
-	overflow: hidden;
+	overflow: hidden!important;
 }
 .full{
 	position: absolute;
@@ -7,7 +7,7 @@ body{
 	height: 100%;
 }
 #ufo{
-	z-index: 101;
+	z-index: 1000;
 	position: absolute;
 	left: 45%;
 	top: 40%;

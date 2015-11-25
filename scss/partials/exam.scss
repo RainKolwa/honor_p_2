@@ -3,15 +3,14 @@
 	display: none;
 	opacity: 1;
 	z-index: 10;
-	width: percentage(876/$defaultWidth);
-	height: percentage(556/$defaultHeight);
+	width: 876px;
+	height: 556px;
 	position: fixed;
 	left: 50%;
-	top: 20%;
-	margin-left: -1/2 * percentage(876/$defaultWidth);
+	top: 50%;
+	margin-top: -556px * 1/2;
+	margin-left: -876px * 1/2;
 	background: url(../images/box-exam.png) center center no-repeat;
-	background-size: contain;
-	-ms-behavior: url(backgroundsize.min.htc);
 	.imgBox{
 		position: absolute;
 		width: percentage(420/876);
@@ -19,8 +18,6 @@
 		left: 2%;
 		top: 0;
 		background: url(../images/star-bg.png) center bottom no-repeat;
-		background-size: 80%;
-		-ms-behavior: url(backgroundsize.min.htc);
 		table{
 			width: 100%;
 			height: 80%;
@@ -62,20 +59,21 @@
 			line-height: 200%;
 			cursor: pointer;
 			position: absolute;
-			width: percentage(50/442);
-			height: percentage(55/556);
-			top: percentage(108/556);
-			background: url(../images/sqr-txt.png) no-repeat;
-			background-size: contain;
-			-ms-behavior: url(backgroundsize.min.htc);
+			width: 50px;
+			height: 55px;
+			line-height: 55px;
+			top: 98px;
+			background: url(../images/sqr-txt-s.png) no-repeat;
 			&.a1,&.a2,&.a3{
 				font-size: 30px;
-				width: percentage(82/442);
-				height: percentage(91/556);
+				width: 82px;
+				height: 91px;
+				line-height: 91px;
+				background: url(../images/sqr-txt.png) no-repeat;
 			}
-			&.a1{left: percentage(20/442);}
-			&.a2{left: percentage((82+20*2)/442);}
-			&.a3{left: percentage((82*2+20*3)/442);}
+			&.a1{left: 33px;}
+			&.a2{left: 82px+33px*2;}
+			&.a3{left: 82px*2+33px*3;}
 		}
 	}
 }

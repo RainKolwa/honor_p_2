@@ -12,7 +12,7 @@
 	};
 
 	HONOR.Public = (function(){
-
+		var isltIE8;
 		var Sys = {};
 		var ua = navigator.userAgent.toLowerCase();
 		var s;
@@ -24,7 +24,7 @@
 		(s = ua.match(/version\/([\d.]+).*safari/)) ? Sys.safari = s[1] : 0;
 
 		if (Sys.ie){
-		    var isltIE8 = parseInt(Sys.ie) < 9 ? true : false;
+		    isltIE8 = parseInt(Sys.ie) < 9 ? true : false;
 		}
 		
 		return {
@@ -362,7 +362,7 @@
 		var showQuestion = function(index){
 			// 显示第 index 条题目
 			var html = template('examView', questions[index]);
-			examBox.html(html);
+			$('#examBox').html(html);
 			examBox.show();
 			if(!HONOR.Public.isltIE8){
 				TL.from(examBox, 0.4, {scale: 1.2, opacity: 0})
