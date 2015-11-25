@@ -9,7 +9,8 @@ var paths = {
 		'node_modules/jquery/dist/jquery.min.js',
 		'node_modules/imagesloaded/imagesloaded.pkgd.min.js',
 		'node_modules/art-template/dist/template.js',
-		'node_modules/gsap/src/minified/TweenMax.min.js'
+		'node_modules/gsap/src/minified/TweenMax.min.js',
+		'bower_components/countUp.js/dist/countUp.min.js'
 	]// ,
 	// styles: [
 	// ]

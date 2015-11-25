@@ -1,6 +1,6 @@
 .ctlpanel{
 	z-index: 103;
-	position: fixed;
+	position: absolute;
 	width: percentage(1603/1920);
 	height: percentage(383/1080);
 	bottom: 0;
@@ -50,5 +50,21 @@
 			background-size: contain;
 			-ms-behavior: url(backgroundsize.min.htc);
 		}
+	}
+	.speed{
+		position: absolute;
+		bottom: 0;
+		font-size: 26px;
+		color: #79c7ff;
+		font-family: 'Speed';
+		width: percentage(165/1603);
+		height: percentage(165/383);
+		text-align: center;
+	}
+	#speed1{
+		left: percentage(360/1603);
+	}
+	#speed2{
+		left: percentage(1050/1603);
 	}
 }

@@ -1,3 +1,7 @@
+@font-face {
+	font-family: "Speed";
+    src: url("../fonts/speed.TTF");
+}
 body{
 	overflow: hidden!important;
 }
@@ -17,7 +21,8 @@ body{
 	background-size: contain;
 	-ms-behavior: url(backgroundsize.min.htc);
 }
-.affix-top{
+.affix-top,
+.header-after{
 	display: none!important;
 }
 #toggle-music {

@@ -1,4 +1,4 @@
-(function ($, imagesLoaded, TL, template, audiojs, cityJson) {
+(function ($, imagesLoaded, TL, template, audiojs, cityJson, CountUp) {
 
 	var isProduction = false;
 
@@ -113,6 +113,27 @@
 			// audiojs.events.ready(function() {
 			// 	var as = audiojs.createAll();
 			// });
+
+			// 码表
+			var options = {
+			  useEasing : true, 
+			  useGrouping : true, 
+			  separator : ',', 
+			  decimal : '.', 
+			  prefix : '', 
+			  suffix : '' 
+			};
+			var speed1 = new CountUp("speed1", 0, 520, 0, 5, options);
+			speed1.start(stableSpeed(speed1, 520));
+			var speed2 = new CountUp("speed2", 0, 98, 0, 5, options);
+			speed2.start(stableSpeed(speed2, 93));
+
+			function stableSpeed(o, max){
+				setInterval(function(){
+					var someVal = Math.random() * 5 + max;
+					o.update(someVal)
+				},1000)
+			}
 
 			bindEvents();
 		};
@@ -653,6 +674,6 @@
 	// HONOR.Result.initAddress()
 	// HONOR.Result.displayResult('type-5');
 
-})(jQuery, imagesLoaded, TweenLite, template, audiojs, cityJson);
+})(jQuery, imagesLoaded, TweenLite, template, audiojs, cityJson, CountUp);
 
 

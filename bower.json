@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "background-size-polyfill": "git@github.com:louisremi/background-size-polyfill.git#~0.2.0",
-    "audiojs": "git@github.com:kolber/audiojs.git"
+    "audiojs": "git@github.com:kolber/audiojs.git",
+    "countUp.js": "git@github.com:inorganik/countUp.js.git#~1.6.0"
   }
 }
