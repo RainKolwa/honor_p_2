@@ -105,10 +105,12 @@
 				});
 			});
 
-			if(window.location.href.indexOf('showResult') === -1){
+			if(window.location.href.indexOf('showResult') === -1 && window.location.href.indexOf('showUname') === -1){
 				startTyping(text, 100, "test");
 			}
-
+			if(window.location.href.indexOf('showUname')){
+				HONOR.Api.isLogin(false, true);
+			}
 			// 初始化音频
 			// audiojs.events.ready(function() {
 			// 	var as = audiojs.createAll();
@@ -153,7 +155,6 @@
 				}
 				// 如是登录回调且已答过题
 				if(window.location.href.indexOf('showResult') > -1){
-					HONOR.Result.init();
 					HONOR.Result.requestResult();
 					showPlanet();
 				}
@@ -455,7 +456,6 @@
 
 			// success回调
 			setTimeout(function(){
-				HONOR.Result.init();
 				HONOR.Result.displayResult('type-2');//恭喜您！获得荣耀星球勋章一枚	
 			},1000)
 		}
@@ -490,6 +490,10 @@
 			})
 			resultBox.on('click', '.hideit', function(){
 				hideResult();
+			})
+			resultBox.on('click', '.logout', function(){
+				HONOR.Api.Logout();
+				$('#nav .info .username').text('未登录');
 			})
 
 			// 
@@ -696,12 +700,15 @@
 						// 未登录
 						if(showResult){
 							reurl = HONOR.Config.baseUrl + '?showResult=true';
+						}else if(showUserInfo){
+							reurl = HONOR.Config.baseUrl + '?showUname=true';
 						}else{
 							reurl = HONOR.Config.baseUrl;
 						}
 						window.location.href = rs.data.honor + "&reurl="+ encodeURIComponent(reurl);
 					}else if(rs.code === 0){
 						// 已登录
+						$('#nav .info .username').text('您好，'+rs.data.uname);
 						if(showResult){
 							HONOR.Result.requestResult();
 						}
@@ -734,6 +741,7 @@
 	// 启动飞船
 	HONOR.Landing.init();
 	HONOR.User.init();
+	HONOR.Result.init();
 
 	// 测试
 	// HONOR.Exam.showQuestion(0);
