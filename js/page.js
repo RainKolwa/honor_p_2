@@ -107,7 +107,7 @@
 
 			// showShip();
 			if(window.location.href.indexOf('showResult') === -1){
-				startTyping(text, 50, "test");
+				startTyping(text, 100, "test");
 			}
 
 			// 初始化音频
