@@ -40,7 +40,13 @@
             height: 176px;
             background: url(../images/crcode.png) 0/100% no-repeat;
         }
-
+        .active-view-2{
+            width: 192px;
+            height: 208px;
+            left: -200px;
+            top: -40px;
+            background: url(../images/qrcode.png) 0/100% no-repeat;
+        }
         &:hover .active-view {
             display: block;
         }
