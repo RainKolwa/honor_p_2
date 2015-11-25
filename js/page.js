@@ -354,14 +354,18 @@
 			examBox.on('click', '.paper a', function(){
 				if($(this).hasClass('a1') || $(this).hasClass('a2') || $(this).hasClass('a3')) return;
 				var select = $(this).text();
-				if($('.paper a.a1').text() === ''){
+				var a1Text = $('.paper a.a1').text();
+				var a2Text = $('.paper a.a2').text();
+				var a3Text = $('.paper a.a3').text();
+
+				if(a1Text === ''){
 					$('.paper a.a1').text(select)
-				}else if($('.paper a.a2').text() === '' && select !== $('.paper a.a1').text()){
+				}else if(a2Text === '' && select !== a1Text){
 					$('.paper a.a2').text(select)
-				}else if($('.paper a.a3').text() === '' && select !== $('.paper a.a2').text()){
+				}else if(a3Text === '' && select !== a2Text && select !== a1Text){
 					$('.paper a.a3').text(select)
-				}else{
-					alert('空格已填满！')
+				}else if(a1Text !== '' && a2Text !== '' && a3Text !== ''){
+					// alert('空格已填满！')
 					return;
 				}
 			})
@@ -526,7 +530,7 @@
 				method: 'GET',
 				dataType: HONOR.Config.dataType,
 				success: function(rs){
-					alert(JSON.stringify(rs));
+					// alert(JSON.stringify(rs));
 					// 
 					if(rs.code === 0){
 						switch(rs.data.prize){
