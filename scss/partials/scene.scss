@@ -4,6 +4,7 @@
 	background-size: cover;
 	-ms-behavior: url(backgroundsize.min.htc);
 	.text-container{
+		display: none;
 		position: absolute;
 		left: 50%;
 		top: percentage(260/$defaultHeight);

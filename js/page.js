@@ -106,7 +106,9 @@
 			});
 
 			// showShip();
-			startTyping(text, 50, "test");
+			if(window.location.href.indexOf('showResult') === -1){
+				startTyping(text, 50, "test");
+			}
 
 			// 初始化音频
 			audiojs.events.ready(function() {
@@ -126,6 +128,7 @@
 				if(window.location.href.indexOf('showResult') > -1){
 					HONOR.Result.init();
 					HONOR.Result.requestResult();
+					showPlanet();
 				}
 			});
 		};
@@ -155,6 +158,7 @@
 		};
 
 		var startTyping = function(textParam, delayParam, destinationParam){
+			dialog.show();
 			text=textParam;
 			delay=delayParam;
 			currentChar=1;
@@ -214,7 +218,8 @@
 		}
 		
 		return {
-			init: init
+			init: init,
+			startTyping: startTyping
 		};
 	})();
 
