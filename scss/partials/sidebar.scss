@@ -1,0 +1,71 @@
+#sidebar {
+    position: fixed;
+    right: 30px;
+    top: 90px;
+    width: 50px;
+    height: 480px;
+    background: url(../images/sidebar.png) 0 1px/100% no-repeat;
+    transition: height .3s;
+
+    &.status-unlock {
+        top: 80px;
+        background: url(../images/sidebar.png) 0 1px/100% no-repeat;
+    }
+
+    &.status-close {
+        height: 50px;
+        background: url(../images/btn-close-toggle.png) 0 no-repeat;
+        background-size: 80%;
+        margin-top: 0;
+        overflow: hidden;
+    }
+
+    .btn-toggle {
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+    }
+
+    .crcode-wrap {
+        position: relative;
+        width: 50px;
+        height: 45px;
+        cursor: pointer;
+        .active-view {
+            display: none;
+            position: absolute;
+            left: -300px;
+            top: 0;
+            width: 294px;
+            height: 176px;
+            background: url(../images/crcode.png) 0/100% no-repeat;
+        }
+
+        &:hover .active-view {
+            display: block;
+        }
+    }
+
+    &.status-prize .crcode-wrap {
+        background: url(../images/unlock.png) 0 4px no-repeat;
+        background-size: cover;
+    }
+
+    &.status-unlock .crcode-wrap {
+        background: none;
+    }
+
+    .history {
+        display: block;
+        height: 40px;
+        width: 50px;
+        margin-top: 40px;
+        margin-left: 0;
+    }
+
+    &.status-prize .history {
+        background: url(../images/history.png) 0/80% no-repeat;
+        background-position: 3px -4px;
+
+    }
+}

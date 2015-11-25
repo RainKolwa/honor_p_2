@@ -153,7 +153,16 @@
 	</div>
 
 	<!-- Naviagtion & Share Tools -->
-	<div></div>
+	<button id="toggle-music" data-action="toggleMusic"></button>
+    <div id="sidebar">
+        <button class="btn-toggle" id="toggle-sidebar" onclick="_paq.push(['trackLink','navigation_pc','link','']);_tjc.push(['_trackEvent','index','navigation_pc','','1','']);"></button>
+        <div id="crcode-wrap" class="crcode-wrap" onclick="_paq.push(['trackLink','dayuebing_pc','link','']);_tjc.push(['_trackEvent','index','dayuebing_pc','','1','']);">
+            <div class="active-view">
+
+            </div>
+        </div>
+        <a href="#" class="history" target="_blank"></a>
+    </div>
 
 	<!-- Templates -->
 	<script id="loadImgBox" type="text/html">
@@ -188,7 +197,7 @@
 	</script>
 
 	<!-- Include audio file -->
-	<audio src="dist/bg.mp3" autoplay loop></audio>
+	<audio id="music" src="dist/bg.mp3" autoplay loop></audio>
 
 	<!-- Include javascript files -->
 	<script type="text/javascript" src="dist/lib.js"></script>

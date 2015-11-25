@@ -110,16 +110,18 @@
 			}
 
 			// 初始化音频
-			audiojs.events.ready(function() {
-				var as = audiojs.createAll();
-			});
+			// audiojs.events.ready(function() {
+			// 	var as = audiojs.createAll();
+			// });
+
+			bindEvents();
 		};
 
 		var completeLoadingHandler = function(){
 
 			// 显示飞船
 			showShip();
-			
+
 			// 移除loading
 			$('#loading').fadeOut(100,function(){
 				$(this).remove();
@@ -219,7 +221,28 @@
 		    var time = Math.random() * 5000;
 
 		    $('#ufo').animate({top: t + 'px', left: l + 'px'}, time, 'swing', randomUFO);
-		}
+		};
+
+		var bindEvents = function(){
+			// 右侧菜单
+			$('#toggle-sidebar').on('click', function () {
+		        $('#sidebar').toggleClass('status-close');
+		    });
+
+		    // 音频控制
+		    var music = $('#toggle-music');
+		    $('#toggle-music').on('click', function(){
+		    	if (music.hasClass('status-stop')) {
+		            $('#music')[0].play();
+		            music.removeClass('status-stop');
+		        }else {
+		            $('#music')[0].pause();
+		            music.addClass('status-stop');
+		        }	
+		    })
+		    
+	        
+		};
 		
 		return {
 			init: init,

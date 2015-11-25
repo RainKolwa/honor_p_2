@@ -20,3 +20,21 @@ body{
 .affix-top{
 	display: none!important;
 }
+#toggle-music {
+    position: fixed;
+    right: 100px;
+    top: 90px;
+    width: 29px;
+    height: 33px;
+    background: url(../images/stop-music.png) 0/100% no-repeat;
+
+    &.status-stop {
+        background: url(../images/start-music.png) 0/100% no-repeat;
+    }
+    transform: scale(1.5);
+}
+button{
+	outline: none;
+    border: 0 none;
+    background: none;
+}
