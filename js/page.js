@@ -381,7 +381,7 @@
 		var submitAnswers = function(){
 			// 隐藏题目
 			TL.to(examBox, 0.8, {scale: 1.2, opacity: 0})
-			HONOR.Panel.setStatus(0);
+			HONOR.Panel.setStatus('default');
 
 			// 提交答案（myAnswers）
 
