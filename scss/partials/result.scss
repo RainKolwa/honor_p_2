@@ -10,7 +10,6 @@
 	width: 882px;
 	height: 645px;
 	background: url(../images/box-result.png) no-repeat;
-	@include transformScale(0.8);
 	.close{
 		width: 70px;
 		height: 70px;
@@ -18,6 +17,7 @@
 		position: absolute;
 		right: 42px;
 		top: 0;
+		z-index: 2;
 	}
 	.button{
 		display: block;

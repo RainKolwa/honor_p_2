@@ -8,9 +8,60 @@
 	HONOR.Config = {
 		baseUrl: isProduction ? "http://campaign.honor.cn/planet/star" : "http://campaign.honor.cn/test/planet/star/pc",
 		api: "http://campaign.honor.cn/awards-inform/star/src/save.php?action=",
-		dataType: isProduction ? "json" : "jsonp"
+		dataType: isProduction ? "json" : "jsonp",
+		questions: [
+			{
+				id: 1,
+				img: "images/star-1.png",
+				desc: "她凭一己之力就能掀起一股文化现象。她是时尚界风生水起的新宠。无惧“玩过界”，勇敢做自己。",
+				content: ["紫","韶","丁","玮","颖","林","弦","宇","邓","涵","当","蔡","李","靓","棋","张","范","春","琪","子","依"]
+			},
+			{
+				id: 2,
+				img: "images/star-2.png",
+				desc: "她的名字很特别，她的形象古灵精怪。她的代表作非常接地气，传递出一股特别的文艺气息。她用一种肆意的态度“在这一刻绽放”。",
+				content: ["千","肆","全","颂","敏","茜","郑","阿","智","晶","秀","贤","伊","宋","孝","莉","雪","乔","慧","张","拉"]
+			},
+			{
+				id: 3,
+				img: "images/star-3.png",
+				desc: "以歌为媒，传递永不凋零的爱情主题。他还拥有一半艳阳一半大雪的诗人灵魂。他的世界，与别人有点不同。",
+				content: ["张","谦","坤","杰","陈","歌","弦","宇","邓","涵","当","蔡","李","靓","棋","张","范","春","琪","子","依"]
+			},
+			{
+				id: 4,
+				img: "images/star-4.png",
+				desc: "只要能开口唱歌，他就觉得很快乐。爱猫爱笑，爱到要把这些都唱进歌里。不被生活的阴霾遮住眼，才能笑到最后。",
+				content: ["晨","雨","萧","井","王","天","胡","敬","陈","然","晓","彦","千","德","刘","翔","柏","斌","华","腾","博"]
+			},
+			{
+				id: 5,
+				img: "images/star-5.png",
+				desc: "他的歌声令人过耳难忘。他用声音传递快乐，用声音表达自己。他与同龄人不同，用别样经历演绎什么叫“青春优等生”",
+				content: ["举","荣","源","易","尔","伦","李","杰","峰","纲","浩","千","涛","黄","周","王","子","涛","清","白","张"]
+			},
+			{
+				id: 6,
+				img: "images/star-6.png",
+				desc: "我行我素是他的标志。即使来自火星，也不怕不被了解。转换一个角度，独特的世界颠覆你的想象。",
+				content: ["亦","贤","凯","王","伯","韬","友","白","晨","凡","吴","晗","边","俊","鹿","华","张","兴","宇","黄","子"]
+			},
+			{
+				id: 7,
+				img: "images/star-7.png",
+				desc: "他靠张嘴吃饭，临场发挥一级棒。他的睿智来自深厚的文化涵养。“双眼看世界”，才能看得更多更远。",
+				content: ["宁","少","赵","咏","孟","贝","涵","炅","乐","华","忠","非","撒","何","汪","嘉","祥","李","王","海","伟"]
+			},
+			{
+				id: 8,
+				img: "images/star-8.png",
+				desc: "她的声音拥有触及灵魂的力量。她来自久负盛名的女子团体。她的舞台因为伙伴更精彩，未来更灿烂",
+				content: ["彩","桦","思","任","宋","陈","甄","萱","茜","家","田","莉","雪","嘉","崔","馥","蜜","睛","晶","秀","斯"]
+			}
+		]
 	};
 
+	// 公用函数
 	HONOR.Public = (function(){
 		var isltIE8;
 		var Sys = {};
@@ -26,9 +77,40 @@
 		if (Sys.ie){
 		    isltIE8 = parseInt(Sys.ie) < 9 ? true : false;
 		}
+
+		var init = function(){
+			// transform examBox 876* 556
+			var w_win = $(window).width();
+			var styles = "-webkit-transform:scale("+w_win/1920+");-moz-transform:scale("+w_win/1920+");transform:scale("+w_win/1920+");";
+			setTransform(styles);
+
+			bindEvents();
+		};
+		var bindEvents = function(){
+			$(document).on('click', '.alertBox .hideit', function(){
+				$('.alertBox').fadeOut();
+			})
+			$(window).on('resize',function(){
+				var w_win = $(window).width();
+				var styles = "-webkit-transform:scale("+w_win/1920+");-moz-transform:scale("+w_win/1920+");transform:scale("+w_win/1920+");";
+				setTransform(styles);
+			})
+		};
+		var alert = function(msg){
+			$('.alertBox').find('p').text(msg);
+			$('.alertBox').fadeIn();
+		};
+		var setTransform = function(val){
+			$('.examBox').attr('style',val);
+			$('.result').attr('style',val);
+			$('.ctlpanel').attr('style',val);
+			//$('.text-container').attr('style',val);
+		};
 		
 		return {
-			isltIE8: isltIE8
+			init: init,
+			isltIE8: isltIE8,
+			alert: alert
 		}
 	})();
 
@@ -82,6 +164,12 @@
 		};
 
 		var init = function(){
+
+			// UFO浪
+			if(!HONOR.Public.isltIE8){
+				randomUFO();
+			}
+
 			// 渲染加载模版
 			var imgHTML = template("loadImgBox", preloadData);
 			preloadBox.html(imgHTML);
@@ -97,7 +185,8 @@
 					percentBox.html(percentage+"%");
 					if(img_count == allimg_count){
 						// UFO升顶
-						TL.to(UFO, 0.8, {left: "45%", top: "-10%", onComplete: completeLoadingHandler})
+						completeLoadingHandler();
+						// TL.to(UFO, 0.8, {left: "45%", top: "-10%", onComplete: completeLoadingHandler})
 						if(HONOR.Public.isltIE8){
 							$('.planets').hide();
 						}
@@ -108,7 +197,7 @@
 			if(window.location.href.indexOf('showResult') === -1 && window.location.href.indexOf('showUname') === -1){
 				startTyping(text, 100, "test");
 			}
-			if(window.location.href.indexOf('showUname')){
+			if(window.location.href.indexOf('showUname') > -1){
 				HONOR.Api.isLogin(false, true);
 			}
 			// 初始化音频
@@ -149,10 +238,6 @@
 			$('#loading').fadeOut(100,function(){
 				$(this).remove();
 
-				// UFO浪
-				if(!HONOR.Public.isltIE8){
-					randomUFO();
-				}
 				// 如是登录回调且已答过题
 				if(window.location.href.indexOf('showResult') > -1){
 					HONOR.Result.requestResult();
@@ -177,7 +262,9 @@
 						TL.to(dialog, 0.8, {y: -100,alpha: 0})
 						setTimeout(function(){
 							// 显示星球
-							showPlanet();	
+							showPlanet();
+							// 移除对话框
+							dialog.remove();
 						},800)
 					},1000)
 					
@@ -263,8 +350,6 @@
 		            music.addClass('status-stop');
 		        }	
 		    })
-		    
-	        
 		};
 		
 		return {
@@ -279,7 +364,6 @@
 			statusBox = panel.find('.statusBox');
 
 		var init = function(){
-
 			bindEvents();
 		};
 
@@ -290,19 +374,27 @@
 					HONOR.Exam.init();
 					HONOR.Exam.randomQuestion();
 					HONOR.Panel.setStatus();
+					$('.examLight').show();
+					if($('.planets').length > 0){
+						TL.to($('.planets'),0.8,{y:100,opacity:0});
+						setTimeout(function(){
+							$('.planets').remove();
+						},500)
+					}
 				}else if($(this).hasClass('next')){
 					if($('.a1').text() === '' || $('.a2').text() === ''){
-						alert('请完善答案');
+						HONOR.Public.alert('请完善答案');
 						return;
 					}
 					HONOR.Exam.randomQuestion();
 					HONOR.Panel.setStatus();
 				}else if($(this).hasClass('submit')){
 					if($('.a1').text() === '' || $('.a2').text() === ''){
-						alert('请完善答案');
+						HONOR.Public.alert('请完善答案');
 						return;
 					}
 					HONOR.Exam.submitAnswers();
+					$('.examLight').hide();
 				}else{
 					return;
 				}
@@ -310,9 +402,14 @@
 		};
 
 		var setStatus = function(answeredCount){
-			answeredCount = answeredCount || HONOR.Exam.allTotal - HONOR.Exam.questions.length;
-
-			switch (answeredCount){
+			// 设置状态栏状态
+			var ascount;
+			if(answeredCount === undefined){
+				ascount = HONOR.Exam.allTotal - HONOR.Exam.questions.length;
+			}else{
+				ascount = answeredCount;
+			}
+			switch (ascount){
 				case 0:
 					statusBox.find('.start').show().siblings().hide();
 					break;
@@ -339,56 +436,7 @@
 	// 抽题
 	HONOR.Exam = (function(){
 		// 定义题库
-		var questions = [
-			{
-				id: 1,
-				img: "images/star-1.png",
-				desc: "她凭一己之力就能掀起一股文化现象。她是时尚界风生水起的新宠。无惧“玩过界”，勇敢做自己。",
-				content: ["紫","韶","丁","玮","颖","林","弦","宇","邓","涵","当","蔡","李","靓","棋","张","范","春","琪","子","依"]
-			},
-			{
-				id: 2,
-				img: "images/star-2.png",
-				desc: "她的名字很特别，她的形象古灵精怪。她的代表作非常接地气，传递出一股特别的文艺气息。她用一种肆意的态度“在这一刻绽放”。",
-				content: ["千","肆","全","颂","敏","茜","郑","阿","智","晶","秀","贤","伊","宋","孝","莉","雪","乔","慧","张","拉"]
-			},
-			{
-				id: 3,
-				img: "images/star-3.png",
-				desc: "以歌为媒，传递永不凋零的爱情主题。他还拥有一半艳阳一半大雪的诗人灵魂。他的世界，与别人有点不同。",
-				content: ["张","谦","坤","杰","陈","歌","弦","宇","邓","涵","当","蔡","李","靓","棋","张","范","春","琪","子","依"]
-			},
-			{
-				id: 4,
-				img: "images/star-4.png",
-				desc: "只要能开口唱歌，他就觉得很快乐。爱猫爱笑，爱到要把这些都唱进歌里。不被生活的阴霾遮住眼，才能笑到最后。",
-				content: ["晨","雨","萧","井","王","天","胡","敬","陈","然","晓","彦","千","德","刘","翔","柏","斌","华","腾","博"]
-			},
-			{
-				id: 5,
-				img: "images/star-5.png",
-				desc: "他的歌声令人过耳难忘。他用声音传递快乐，用声音表达自己。他与同龄人不同，用别样经历演绎什么叫“青春优等生”",
-				content: ["举","荣","源","易","尔","伦","李","杰","峰","纲","浩","千","涛","黄","周","王","子","涛","清","白","张"]
-			},
-			{
-				id: 6,
-				img: "images/star-6.png",
-				desc: "我行我素是他的标志。即使来自火星，也不怕不被了解。转换一个角度，独特的世界颠覆你的想象。",
-				content: ["亦","贤","凯","王","伯","韬","友","白","晨","凡","吴","晗","边","俊","鹿","华","张","兴","宇","黄","子"]
-			},
-			{
-				id: 7,
-				img: "images/star-7.png",
-				desc: "他靠张嘴吃饭，临场发挥一级棒。他的睿智来自深厚的文化涵养。“双眼看世界”，才能看得更多更远。",
-				content: ["宁","少","赵","咏","孟","贝","涵","炅","乐","华","忠","非","撒","何","汪","嘉","祥","李","王","海","伟"]
-			},
-			{
-				id: 8,
-				img: "images/star-8.png",
-				desc: "她的声音拥有触及灵魂的力量。她来自久负盛名的女子团体。她的舞台因为伙伴更精彩，未来更灿烂",
-				content: ["彩","桦","思","任","宋","陈","甄","萱","茜","家","田","莉","雪","嘉","崔","馥","蜜","睛","晶","秀","斯"]
-			}
-		];
+		var questions = HONOR.Config.questions.slice();
 
 		var examTotal = 3; // 随机题数
 		var allTotal = questions.length;
@@ -401,23 +449,35 @@
 		};
 
 		var bindEvents = function(){
-			examBox.on('click', '.paper a', function(){
-				if($(this).hasClass('a1') || $(this).hasClass('a2') || $(this).hasClass('a3')) return;
-				var select = $(this).text();
-				var a1Text = $('.paper a.a1').text();
-				var a2Text = $('.paper a.a2').text();
-				var a3Text = $('.paper a.a3').text();
+			examBox.on('click', '.paper a', function(e){
+				e.preventDefault();
+				if($(this).hasClass('a1') || $(this).hasClass('a2') || $(this).hasClass('a3')){
+					// 删除
+					if($(this).children('span').text() === ''){
+						return;
+					}else{
+						var fromIndex = $(this).data('index');
+						$(this).removeClass('filled').children('span').html('');
+						$('.paper a').eq(fromIndex).removeClass('selected');
+					}
+				}else{
+					// 选择
+					var _text = $(this).children('span').text();
+					var _index = $(this).index();
+					if($(this).hasClass('selected')){
+						return;
+					}else{
+						for(var o = 0;o < 3;o++){
+							if($('.paper a').eq(o).children('span').text()==""){
+								$('.paper a').eq(o).addClass('filled').data('index',_index).children('span').text(_text).append('<i></i>');
+								$(this).addClass('selected');
+								break;
+							}
+						}
+					}
 
-				if(a1Text === ''){
-					$('.paper a.a1').text(select)
-				}else if(a2Text === '' && select !== a1Text){
-					$('.paper a.a2').text(select)
-				}else if(a3Text === '' && select !== a2Text && select !== a1Text){
-					$('.paper a.a3').text(select)
-				}else if(a1Text !== '' && a2Text !== '' && a3Text !== ''){
-					// alert('空格已填满！')
-					return;
 				}
+				
 			})
 		};
 
@@ -432,10 +492,11 @@
 			$('#examBox').html(html);
 			examBox.show();
 			if(!HONOR.Public.isltIE8){
-				TL.from(examBox, 0.4, {scale: 1.2, opacity: 0})
+				TL.from(examBox, 0.8, {y: -100, opacity: 0})
 			}else{
 				examBox.css('opacity', 1);
 			}
+			HONOR.Exam.init();
 		};
 
 		var randomQuestion = function(){
@@ -444,12 +505,18 @@
 			// 显示题目
 			showQuestion(index);
 			// 从题库中删除该题
-			questions.splice(index, 1);
+			HONOR.Exam.questions.splice(index, 1);
 		};
 
 		var submitAnswers = function(){
 			// 隐藏题目
-			TL.to(examBox, 0.8, {scale: 1.2, opacity: 0})
+			TL.to(examBox, 0.8, {opacity: 0, onComplete: onQsCompleteHandle})
+			
+			function onQsCompleteHandle(){
+				examBox.hide();
+				examBox.css('opacity', 1)
+			}
+			
 			HONOR.Panel.setStatus('default');
 
 			// 提交答案（myAnswers）
@@ -490,6 +557,8 @@
 			})
 			resultBox.on('click', '.hideit', function(){
 				hideResult();
+				HONOR.Exam.questions = HONOR.Config.questions.slice();
+				HONOR.Panel.setStatus();
 			})
 			resultBox.on('click', '.logout', function(){
 				HONOR.Api.Logout();
@@ -530,7 +599,7 @@
 
 				// validate
 				if(mobile === '' || truename === '' || province === '' || province === '选择省' || city === '' || city === '选择市' || address === '' || address === '输入详细地址'){
-					alert('请输入完整的信息！');
+					HONOR.Public.alert('请输入完整的信息！');
 					return;
 				}
 				
@@ -541,7 +610,7 @@
 					dataType: HONOR.Config.dataType,
 					data: {mobile: mobile,truename: truename,province: province,city: city,address: address},
 					success: function(rs){
-						alert('提交成功！');
+						HONOR.Public.alert('提交成功！');
 					}
 				})
 			})
@@ -594,11 +663,9 @@
 					//未中奖
 					userbox.find('.bd p').text('荣耀明星集结号活动 您暂时没有中奖信息哦！');
 				}
-
-				resultBox.find('')
 			}
 			resultBox.find(Type).show().siblings('.type-box').hide();
-			TL.to(resultBox, 0.4, {scale: 1, opacity: 1})
+			TL.to(resultBox, 0.4, {opacity: 1})
 		};
 
 		var requestResult = function(){
@@ -607,7 +674,7 @@
 				method: 'GET',
 				dataType: HONOR.Config.dataType,
 				success: function(rs){
-					// alert(JSON.stringify(rs));
+					// HONOR.Public.alert(JSON.stringify(rs));
 					// 
 					if(rs.code === 0){
 						switch(rs.data.prize){
@@ -671,8 +738,8 @@
 				HONOR.Result.displayResult('type-6');
 			})
 			shareBtn.on('click', function(){
-				var title = encodeURIComponent('荣耀星球二周年庆典'),
-	            pic = encodeURIComponent('http://campaign.honor.cn/test/planet/parade/pc/images/share.jpg'),
+				var title = encodeURIComponent('这些明星都是sei？臣妾猜不出啊！'),
+	            pic = encodeURIComponent('http://campaign.honor.cn/test/planet/star/pc/images/share.jpg'),
 	            l = encodeURIComponent(location.href);
 	        	openWin('http://v.t.sina.com.cn/share/share.php?title=' + title + '&url=' + l + '&pic=' + pic, 'weibo', 900, 600);
 			})
@@ -680,8 +747,7 @@
 		var openWin = function(url, name, width, height){
 		    var top = (window.screen.availHeight - 30 - height) / 2;
 		    var left = (window.screen.availWidth - 10 - width) / 2;
-		    window.open(url, name, 'height=' + height + ',width=' + width + ',top=' + top + ',left=' + left
-		    + ',toolbar=no,menubar=no,scrollbars=auto,resizeable=no,location=no,status=no');
+		    window.open(url, name, 'height=' + height + ',width=' + width + ',top=' + top + ',left=' + left + ',toolbar=no,menubar=no,scrollbars=auto,resizeable=no,location=no,status=no');
 		};
 		return {
 			init: init
@@ -727,7 +793,7 @@
 				dataType: HONOR.Config.dataType,
 				success: function(rs){
 					// console.log(rs);
-					alert("注销成功");
+					HONOR.Public.alert("注销成功");
 				}
 			})
 		};
@@ -740,6 +806,7 @@
 
 	// 启动飞船
 	HONOR.Landing.init();
+	HONOR.Public.init();
 	HONOR.User.init();
 	HONOR.Result.init();
 

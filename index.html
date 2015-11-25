@@ -75,6 +75,9 @@
 		</div>
 		<div id="speed1" class="speed">0</div>
 		<div id="speed2" class="speed">0</div>
+		<div class="examLight">
+			<img src="images/ship-light.png" />
+		</div>
 	</div>
 
 	<!-- Exam -->
@@ -83,7 +86,6 @@
 			<!--Template code here-->
 		</div>
 	</div>
-	<div class="examLight"></div>
 
 	<!-- Results -->
 	<div class="result">
@@ -165,6 +167,13 @@
 		</div>
 	</div>
 
+	<!--提示信息-->
+	<div class="alertBox">
+		<a class="close hideit" href="javascript:;" title="关闭"></a>
+		<p></p>
+		<a href="javascript:;" class="button hideit">确定</a>
+	</div>
+
 	<!-- Naviagtion & Share Tools -->
 	<button id="toggle-music" data-action="toggleMusic"></button>
     <div id="sidebar">
@@ -204,17 +213,17 @@
 			<p>{{desc}}</p>
 		</div>
 		<div class="paper">
-			<a href="javascript:;" class="a1"></a>
-			<a href="javascript:;" class="a2"></a>
-			<a href="javascript:;" class="a3"></a>
+			<a href="javascript:;" class="a1"><span></span></a>
+			<a href="javascript:;" class="a2"><span></span></a>
+			<a href="javascript:;" class="a3"><span></span></a>
 		
 			{{each content as value i}}
 				{{if i > 13}}
-					<a style="left:{{55*(i-14)}}px;top: 220px;">{{value}}</a>
+					<a style="left:{{55*(i-14)}}px;top: 260px;"><span>{{value}}</span></a>
 				{{else if i > 6}}
-					<a style="left:{{55*(i-7)}}px;top: 280px">{{value}}</a>
+					<a style="left:{{55*(i-7)}}px;top: 320px"><span>{{value}}</span></a>
 				{{else}}
-					<a style="left:{{55*i}}px;top: 340px;">{{value}}</a>
+					<a style="left:{{55*i}}px;top: 380px;"><span>{{value}}</span></a>
 				{{/if}}
 		    {{/each}}
 		</div>

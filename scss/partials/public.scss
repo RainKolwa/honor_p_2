@@ -28,9 +28,10 @@ body{
     width: 29px;
     height: 33px;
     background: url(../images/stop-music.png) 0/100% no-repeat;
-
+	-ms-behavior: url(backgroundsize.min.htc);
     &.status-stop {
         background: url(../images/start-music.png) 0/100% no-repeat;
+        -ms-behavior: url(backgroundsize.min.htc);
     }
     transform: scale(1.5);
 }

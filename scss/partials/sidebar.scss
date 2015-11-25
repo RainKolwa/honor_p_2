@@ -4,12 +4,16 @@
     top: 90px;
     width: 50px;
     height: 500px;
-    background: url(../images/sidebar.png) 0 1px/100% no-repeat;
+    background: url(../images/sidebar.png) no-repeat;
+    background-size: contain;
+    -ms-behavior: url(backgroundsize.min.htc);
     transition: height .3s;
-
+    z-index: 104;
     &.status-unlock {
         top: 80px;
-        background: url(../images/sidebar.png) 0 1px/100% no-repeat;
+        background: url(../images/sidebar.png) no-repeat;
+        background-size: contain;
+        -ms-behavior: url(backgroundsize.min.htc);
     }
 
     &.status-close {
@@ -39,6 +43,7 @@
             width: 294px;
             height: 176px;
             background: url(../images/crcode.png) 0/100% no-repeat;
+            -ms-behavior: url(backgroundsize.min.htc);
         }
         .active-view-2{
             width: 192px;
@@ -46,6 +51,7 @@
             left: -200px;
             top: -40px;
             background: url(../images/qrcode.png) 0/100% no-repeat;
+            -ms-behavior: url(backgroundsize.min.htc);
         }
         &:hover .active-view {
             display: block;
@@ -71,6 +77,7 @@
 
     &.status-prize .history {
         background: url(../images/history.png) 0/80% no-repeat;
+        -ms-behavior: url(backgroundsize.min.htc);
         background-position: 3px -4px;
 
     }

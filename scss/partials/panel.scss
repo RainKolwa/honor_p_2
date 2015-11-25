@@ -1,21 +1,22 @@
 .ctlpanel{
 	z-index: 103;
 	position: absolute;
-	width: percentage(1603/1920);
-	height: percentage(383/1080);
+	width: 1603px;
+	height: 383px;
 	bottom: 0;
 	opacity: 1;
 	left: 50%;
-	margin-left: -1/2 * percentage(1603/1920);
+	margin-left: -1/2 * 1603px;
 	background: url(../images/ship.png) center bottom no-repeat;
-	background-size: contain;
-	-ms-behavior: url(backgroundsize.min.htc);
+	-webkit-transform-origin: center bottom;
+	-moz-transform-origin: center bottom;
+	transform-origin: center bottom;
 	.statusBox{
 		position: absolute;
-		width: percentage(345/1603);
-		height: percentage(145/383);
+		width: 345px;
+		height: 145px;
 		left: 50%;
-		margin-left: -1/2 * percentage(345/1603);
+		margin-left: -1/2 * 345px;
 		bottom: 0;
 		a{
 			display: none;
@@ -27,7 +28,7 @@
 			text-align: center;
 			cursor: pointer;
 			span{
-				font-size: 16px;
+				font-size: 26px;
 				color: #fff;
 				display: inline-block;
    				vertical-align: middle;
@@ -42,29 +43,36 @@
 		.default{
 			display: block;
 			background: url(../images/panel-status-default.png) center bottom no-repeat;
-			background-size: contain;
-			-ms-behavior: url(backgroundsize.min.htc);
 		}
 		.start, .next, .submit{
 			background: url(../images/panel-status-progress.png) center bottom no-repeat;
-			background-size: contain;
-			-ms-behavior: url(backgroundsize.min.htc);
 		}
 	}
 	.speed{
 		position: absolute;
-		bottom: 0;
-		font-size: 26px;
+		bottom: 106px;
+		font-size: 48px;
 		color: #79c7ff;
 		font-family: 'Speed';
-		width: percentage(165/1603);
-		height: percentage(165/383);
-		text-align: center;
 	}
 	#speed1{
-		left: percentage(360/1603);
+		left: 50%;
+		margin-left: -400px;
 	}
 	#speed2{
-		left: percentage(1050/1603);
+		left: 50%;
+		margin-left: 314px;
+	}
+	.examLight{
+		display: none;
+		position: absolute;
+		width: 1160px;
+		height: 824px;
+		bottom: 174px;
+		left: 50%;
+		margin-left: -1/2 * 1160px;
+		img{
+			width: 100%;
+		}
 	}
 }

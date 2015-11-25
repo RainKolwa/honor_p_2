@@ -9,8 +9,7 @@ header,
     height: 50px;
     left: 80px;
     right: 20px;
-    background: url(../images/nav/logo.png) 0 50% no-repeat;
-    z-index: 999;
+    z-index: 100;
     color: #fff;
     font-size: 12px;
     line-height: 40px;
@@ -38,18 +37,24 @@ header,
         margin-right: 5px;
         width: 20px;
         height: 20px;
-        background: 0/100% no-repeat;
+        background: contain no-repeat;
     }
 
     .user-center {
-        background-image: url(../images/user.png);
+        background: url(../images/user.png) no-repeat;
+        background-size: contain;
+        -ms-behavior: url(backgroundsize.min.htc);
     }
 
     .rule {
-        background-image: url(../images/rule.png);
+        background: url(../images/rule.png) no-repeat;
+        background-size: contain;
+        -ms-behavior: url(backgroundsize.min.htc);
     }
 
     .share {
-        background-image: url(../images/share.png);
+        background: url(../images/share.png) no-repeat;
+        background-size: contain;
+        -ms-behavior: url(backgroundsize.min.htc);
     }
 }

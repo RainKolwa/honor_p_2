@@ -1,0 +1,42 @@
+.alertBox{
+	display: none;
+	z-index: 105;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -(645px / 4);
+	margin-left: -1/4 * 882px;
+	width: 882px * 1/2;
+	height: 645px * 1/2;
+	background: url(../images/box-result.png) no-repeat;
+	background-size: contain;
+	-ms-behavior: url(backgroundsize.min.htc);
+	.close{
+		width: 70px * 1/2;
+		height: 70px * 1/2;
+		display: block;
+		position: absolute;
+		right: 21px;
+		top: 0;
+	}
+	.button{
+		display: block;
+		margin: 50px auto 0;
+		width: 204px;
+		height: 51px;
+		font-size: 18px;
+		color: #fff;
+		text-shadow: 0 0 10px #27b6ff;
+		line-height: 51px;
+		text-align: center;
+		background: url(../images/btn-wrap.png) no-repeat;
+	}
+	p{
+		font-size: 18px;
+		color: #fff;
+		width: 80%;
+		text-align: center;
+		margin: 60px auto;
+		line-height: 28px;
+	}
+}
