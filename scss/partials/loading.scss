@@ -1,10 +1,14 @@
 .loadBox{
 	z-index: 999;
-	background: #000;
+	background: url(../images/bg-origin.jpg) center center no-repeat;
+	background-size: cover;
 	#percentage{
-		color: #666;
+		font-size: 32px;
+		color: #79c7ff;
 		position: absolute;
 		left: 50%;
 		top: 50%;
+		text-shadow: 0 0 10px #00b2e2;
+		font-family: 'Speed';
 	}
 }

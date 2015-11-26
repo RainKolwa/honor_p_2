@@ -1,15 +1,30 @@
 .audiojs{
+	position: fixed;
+	z-index: 104;
+    right: 90px;
+    top: 80px;
+    width: 40px;
+    height: 46px;
+    background: none;
 	.time,
 	.error-message,
 	.scrubber{
 		display: none;
 	}
 	.play-pause{
+		width: 40px;
+		height: 46px;
+		border-right: 0 none;
+		padding: 0;
 		.play{
-
+			width: 40px;
+			height: 46px;
+		    background: url(../images/start-music.png) no-repeat;
 		}
 		.pause{
-
+			width: 40px;
+			height: 46px;
+			background: url(../images/stop-music.png) no-repeat;
 		}
 		.loading{
 

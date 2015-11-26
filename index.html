@@ -136,8 +136,8 @@
 			<!--提交-->
 			<a class="submit"><span>提交</span></a>
 		</div>
-		<div id="speed1" class="speed">0</div>
-		<div id="speed2" class="speed">0</div>
+		<div id="speed1" class="speed"></div>
+		<div id="speed2" class="speed"></div>
 		<div class="examLight">
 			<img src="images/ship-light.png" />
 		</div>
@@ -153,12 +153,12 @@
 	<!-- Results -->
 	<div class="result">
 		<!--关闭弹窗-->
-		<a class="close hideit" href="javascript:;" title="关闭"></a>
+		<a class="close hideit" href="javascript:;"></a>
 		<!--勋章一枚-->
 		<div class="type-2 type-box">
 			<h3>恭喜您！获得荣耀星球勋章一枚！</h3>
 			<p>立即激活将有机会赢取荣耀手机哦！</p>
-			<a href="javascript:;" class="button hideit start" onclick="_paq.push(['trackLink','star_button_dakaichoujiang','link','']);_tjc.push(['_trackEvent','index','star_button_dakaichoujiang','','1','']);">打开抽奖</a>
+			<a href="javascript:;" class="button start" onclick="_paq.push(['trackLink','star_button_dakaichoujiang','link','']);_tjc.push(['_trackEvent','index','star_button_dakaichoujiang','','1','']);">打开抽奖</a>
 		</div>
 		<!--未中奖-->
 		<div class="type-1 type-box">
@@ -180,7 +180,7 @@
 			</div>
 
 			<a href="javascript:;" class="button save" onclick="_paq.push(['trackLink','star_button_lijibaocun_yougouma','link','']);_tjc.push(['_trackEvent','index','star_button_lijibaocun_yougouma','','1','']);">立即保存</a>
-			<p>点击保存至个人中心前往<a href="http://www.vmall.com/priority" target="_blank" onclick="_paq.push(['trackLink','star_link_huaweishangcheng','link','']);_tjc.push(['_trackEvent','index','star_link_huaweishangcheng','','1','']);">华为商城</a>使用</p>
+			<p>点击保存至个人中心前往<a href="http://www.vmall.com" target="_blank" onclick="_paq.push(['trackLink','star_link_huaweishangcheng','link','']);_tjc.push(['_trackEvent','index','star_link_huaweishangcheng','','1','']);">华为商城</a>使用</p>
 		</div>
 		<!--中大奖-->
 		<div class="type-5 type-box">
@@ -238,15 +238,18 @@
 	</div>
 
 	<!-- Naviagtion & Share Tools -->
-	<button id="toggle-music" data-action="toggleMusic"></button>
     <div id="sidebar">
-        <button class="btn-toggle" id="toggle-sidebar"></button>
-        <a class="crcode-wrap period-1 canbeunlock">
-            <div class="active-view"></div>
+        <a class="btn-toggle" id="toggle-sidebar" href="javascript:;"></a>
+        <a class="crcode-wrap period-1 canbeunlock" href="http://campaign.honor.cn/planet/parade/pc/index.html" target="_blank">
+            <div class="active-view">
+            	<img src="images/crcode.png" alt="">
+            </div>
         </a>
         <a class="crcode-wrap period-2 canbeunlock" href="http://campaign.honor.cn/planet/parade/pc/history.html" target="_blank"></a>
         <a class="crcode-wrap period-3 canbeunlock" href="#">
-            <div class="active-view active-view-2"></div>
+            <div class="active-view active-view-2">
+            	<img src="images/qrcode.png" alt="">
+            </div>
         </a>
         <a class="crcode-wrap period-4 locked"></a>
         <a class="crcode-wrap period-5 locked"></a>
@@ -254,9 +257,9 @@
     <div id="nav">
         <div class="info">
             <span class="username">未登录</span>
-            <button id="user-center" class="user-center"></button>
-            <button class="rule"></button>
-            <button class="share"></button>
+            <button id="user-center" class="user-center"><img src="images/sprite.png" width="100%" height="100%" /></button>
+            <button class="rule"><img src="images/sprite.png" width="100%" height="100%" /></button>
+            <button class="share"><img src="images/sprite.png" width="100%" height="100%" /></button>
         </div>
     </div>
 
@@ -293,7 +296,7 @@
 	</script>
 
 	<!-- Include audio file -->
-	<audio id="music" src="dist/bg.mp3" autoplay loop></audio>
+	<audio id="music" src="dist/bg.mp3"></audio>
 
 	<!-- Include javascript files -->
 	<script type="text/javascript" src="dist/lib.js"></script>

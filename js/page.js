@@ -1,13 +1,13 @@
 (function ($, imagesLoaded, TL, template, audiojs, cityJson, CountUp) {
 
-	var isProduction = false;
+	var isProduction = true;
 
 	var HONOR = {};
 	window.HONOR = HONOR;
 
 	HONOR.Config = {
-		baseUrl: isProduction ? "http://campaign.honor.cn/planet/star" : "http://campaign.honor.cn/test/planet/star/pc",
-		api: "http://campaign.honor.cn/awards-inform/star/src/save.php?action=",
+		baseUrl: isProduction ? "http://campaign.honor.cn/planet/star/pc" : "http://campaign.honor.cn/test/planet/star/pc",
+		api: isProduction ? "http://campaign.honor.cn/awards-inform/star/src/save.php?action=" : "http://campaign.honor.cn/awards-inform/star/src/save2.php?action=",
 		dataType: isProduction ? "json" : "jsonp",
 		questions: [
 			{
@@ -26,7 +26,7 @@
 				id: 3,
 				img: "images/star-3.png",
 				desc: "以歌为媒，传递永不凋零的爱情主题。他还拥有一半艳阳一半大雪的诗人灵魂。他的世界，与别人有点不同。",
-				content: ["张","谦","坤","杰","陈","歌","弦","宇","邓","涵","当","蔡","李","靓","棋","张","范","春","琪","子","依"]
+				content: ["张","谦","坤","杰","陈","歌","小","春","之","胡","薛","尼","頔","东","迪","马","池","力","宋","野","云"]
 			},
 			{
 				id: 4,
@@ -78,11 +78,13 @@
 		    isltIE8 = parseInt(Sys.ie) < 9 ? true : false;
 		}
 
+		var hasTriedToday = false;
+
 		var init = function(){
 			// transform examBox 876* 556
 			var w_win = $(window).width();
-			var styles = "-webkit-transform:scale("+w_win/1920+");-moz-transform:scale("+w_win/1920+");transform:scale("+w_win/1920+");";
-			setTransform(styles);
+			var scale = w_win/1920
+			setTransform(scale);
 
 			bindEvents();
 		};
@@ -92,8 +94,8 @@
 			})
 			$(window).on('resize',function(){
 				var w_win = $(window).width();
-				var styles = "-webkit-transform:scale("+w_win/1920+");-moz-transform:scale("+w_win/1920+");transform:scale("+w_win/1920+");";
-				setTransform(styles);
+				var scale = w_win/1920;
+				setTransform(scale);
 			})
 		};
 		var alert = function(msg){
@@ -101,16 +103,19 @@
 			$('.alertBox').fadeIn();
 		};
 		var setTransform = function(val){
-			$('.examBox').attr('style',val);
-			$('.result').attr('style',val);
-			$('.ctlpanel').attr('style',val);
-			//$('.text-container').attr('style',val);
+			$('.examBox,.result,.ctlpanel,.text-container').css({
+				'-webkit-transform':'scale('+val+')',
+				'-moz-transform':'scale('+val+')',
+				'-ms-transform':'scale('+val+')',
+				'transform':'scale('+val+')'
+			});
 		};
 		
 		return {
 			init: init,
 			isltIE8: isltIE8,
-			alert: alert
+			alert: alert,
+			hasTriedToday: hasTriedToday
 		}
 	})();
 
@@ -130,6 +135,7 @@
 
 		var preloadData = {
 			imgs:[
+				"bg-origin.jpg",
 				"astronaut-5th-shadow.png",
 				"astronaut-5th.png",
 				"astronaut-first.png",
@@ -157,6 +163,11 @@
 				"star-1.png",
 				"star-2.png",
 				"star-3.png",
+				"star-4.png",
+				"star-5.png",
+				"star-6.png",
+				"star-7.png",
+				"star-8.png",
 				"star-bg.png",
 				"ufo.png",
 				"wormhole.png"
@@ -191,11 +202,8 @@
 							$('.planets').hide();
 						}
 
-						if(window.location.href.indexOf('showResult') === -1 && window.location.href.indexOf('showUname') === -1){
+						if(window.location.href.indexOf('showResult') == -1 && window.location.href.indexOf('showUname') == -1){
 							startTyping(text, 100, "test");
-						}
-						if(window.location.href.indexOf('showUname') > -1){
-							HONOR.Api.isLogin(false, true, true);
 						}
 					}
 				});
@@ -203,24 +211,28 @@
 
 			
 			// 初始化音频
-			// audiojs.events.ready(function() {
-			// 	var as = audiojs.createAll();
-			// });
+			audiojs.events.ready(function() {
+				audiojs.createAll({
+					autoplay: true,
+					loop: true
+				});
+			});
 
 			// 码表
-			var options = {
-			  useEasing : true, 
-			  useGrouping : true, 
-			  separator : ',', 
-			  decimal : '.', 
-			  prefix : '', 
-			  suffix : '' 
-			};
-			var speed1 = new CountUp("speed1", 0, 520, 0, 5, options);
-			speed1.start(stableSpeed(speed1, 520));
-			var speed2 = new CountUp("speed2", 0, 98, 0, 5, options);
-			speed2.start(stableSpeed(speed2, 93));
-
+			if(!HONOR.Public.isltIE8){
+				var options = {
+				  useEasing : true, 
+				  useGrouping : true, 
+				  separator : ',', 
+				  decimal : '.', 
+				  prefix : '', 
+				  suffix : '' 
+				};
+				var speed1 = new CountUp("speed1", 0, 520, 0, 5, options);
+				speed1.start(stableSpeed(speed1, 520));
+				var speed2 = new CountUp("speed2", 0, 98, 0, 5, options);
+				speed2.start(stableSpeed(speed2, 93));
+			}
 			function stableSpeed(o, max){
 				setInterval(function(){
 					var someVal = Math.random() * 5 + max;
@@ -243,6 +255,10 @@
 				// 如是登录回调且已答过题
 				if(window.location.href.indexOf('showResult') > -1){
 					HONOR.Result.requestResult();
+					showPlanet();
+				}
+				if(window.location.href.indexOf('showUname') > -1){
+					HONOR.Api.isLogin(false, true, true);
 					showPlanet();
 				}
 			});
@@ -340,18 +356,6 @@
 			$('#toggle-sidebar').on('click', function () {
 		        $('#sidebar').toggleClass('status-close');
 		    });
-
-		    // 音频控制
-		    var music = $('#toggle-music');
-		    $('#toggle-music').on('click', function(){
-		    	if (music.hasClass('status-stop')) {
-		            $('#music')[0].play();
-		            music.removeClass('status-stop');
-		        }else {
-		            $('#music')[0].pause();
-		            music.addClass('status-stop');
-		        }	
-		    })
 		};
 		
 		return {
@@ -389,7 +393,7 @@
 					}
 					_paq.push(['trackLink','star_button_qucai','link','']);_tjc.push(['_trackEvent','index','star_button_qucai','','1','']);
 				}else if($(this).hasClass('next')){
-					if($('.a1').text() === '' || $('.a2').text() === ''){
+					if($('.a1').text() == '' || $('.a2').text() == ''){
 						HONOR.Public.alert('请完善答案');
 						return;
 					}
@@ -397,7 +401,7 @@
 					HONOR.Panel.setStatus();
 					_paq.push(['trackLink','star_button_tijiao','link','']);_tjc.push(['_trackEvent','index','star_button_tijiao','','1','']);
 				}else if($(this).hasClass('submit')){
-					if($('.a1').text() === '' || $('.a2').text() === ''){
+					if($('.a1').text() == '' || $('.a2').text() == ''){
 						HONOR.Public.alert('请完善答案');
 						return;
 					}
@@ -462,7 +466,7 @@
 				e.preventDefault();
 				if($(this).hasClass('a1') || $(this).hasClass('a2') || $(this).hasClass('a3')){
 					// 删除
-					if($(this).children('span').text() === ''){
+					if($(this).children('span').text() == ''){
 						return;
 					}else{
 						var fromIndex = $(this).data('index');
@@ -492,7 +496,7 @@
 
 		var randomQuestionIndex = function(){
 			// 随机产生[0,questions.length]之间的整数
-			return Math.floor(Math.random() * questions.length);
+			return Math.floor(Math.random() * HONOR.Exam.questions.length);
 		};
 
 		var showQuestion = function(index){
@@ -532,7 +536,11 @@
 
 			// success回调
 			setTimeout(function(){
-				HONOR.Result.displayResult('type-2');//恭喜您！获得荣耀星球勋章一枚	
+				if(HONOR.Api.hasLotteried || HONOR.Public.hasTriedToday){
+					HONOR.Result.displayResult('type-3');
+				}else{
+					HONOR.Result.displayResult('type-2');//恭喜您！获得荣耀星球勋章一枚		
+				}
 			},1000)
 		}
 
@@ -564,6 +572,7 @@
 			// 打开抽奖
 			resultBox.on('click', '.start', function(){
 				HONOR.Api.isLogin(true, false, true);
+				HONOR.Public.hasTriedToday = true;
 			})
 			resultBox.on('click', '.hideit', function(){
 				hideResult();
@@ -614,7 +623,7 @@
 				var address = form.find('#addr').val();
 
 				// validate
-				if(mobile === '' || truename === '' || province === '' || province === '选择省' || city === '' || city === '选择市' || address === '' || address === '输入详细地址'){
+				if(mobile == '' || truename == '' || province == '' || province == '选择省' || city == '' || city == '选择市' || address == '' || address == '输入详细地址'){
 					HONOR.Public.alert('请输入完整的信息！');
 					return;
 				}
@@ -627,8 +636,13 @@
 					data: {mobile: mobile,truename: truename,province: province,city: city,address: address},
 					success: function(rs){
 						HONOR.Public.alert('提交成功！');
+						hideResult();
 					}
 				})
+			})
+
+			resultBox.on('click', '.save', function(){
+				HONOR.Result.displayResult('type-7');
 			})
 		};
 
@@ -654,34 +668,40 @@
 		var displayResult = function(type, data){
 			resultBox.show();
 			var Type = '.' + type;
-			if(type === 'type-4'){
+			if(type == 'type-4'){
 				// 如是优购码，填充
-				resultBox.find('.box-data span').text(code);
+				resultBox.find('.box-code span').text(data);
 			}
-			if(type === 'type-7'){
+			if(type == 'type-7'){
 				// 个人中心
 				// data.uname
 				// data.prizeid
-				var userbox = resultBox.find('.type-7');
-				userbox.find('.hd span').text(data.uname);
-				if(data.prizeid > 0){
-					//中奖
-					var prizename;
-					if(data.types == 1){
-						prizename = '荣耀7i手机一部';
+				if(data){
+					var userbox = resultBox.find('.type-7');
+					userbox.find('.hd span').text(data.uname);
+					if(data.prizeid > 0){
+						//中奖
+						var prizename;
+						if(data.types == 1){
+							prizename = '荣耀7i手机一部';
+						}
+						if(data.types == 2){
+							prizename = '荣耀7i手机优购码：<br>' + data.coupon;
+						}
+						var str = data.prizetime + '<br>荣耀明星集结号活动 您获得' + prizename;
+						userbox.find('.bd p').html(str);
+					}else{
+						//未中奖
+						userbox.find('.bd p').text('荣耀明星集结号活动 您暂时没有中奖信息哦！');
 					}
-					if(data.types == 2){
-						prizename = '荣耀7i手机优购码：<br>' + data.coupon;
-					}
-					var str = data.prizetime + '<br>荣耀明星集结号活动 您获得' + prizename;
-					userbox.find('.bd p').html(str);
-				}else{
-					//未中奖
-					userbox.find('.bd p').text('荣耀明星集结号活动 您暂时没有中奖信息哦！');
 				}
 			}
 			resultBox.find(Type).show().siblings('.type-box').hide();
-			TL.to(resultBox, 0.4, {opacity: 1})
+			if(HONOR.Public.isltIE8){
+				resultBox.css('opacity', 1);
+			}else{
+				TL.to(resultBox, 0.4, {opacity: 1})
+			}
 		};
 
 		var requestResult = function(){
@@ -692,22 +712,22 @@
 				success: function(rs){
 					// HONOR.Public.alert(JSON.stringify(rs));
 					// 
-					if(rs.code === 0){
+					if(rs.code == 0){
 						switch(rs.data.prize){
-							case 1://实物奖品
+							case "1"://实物奖品
 								displayResult('type-5');
 								initAddress();
 								break;
-							case 2://虚拟优购码
+							case "2"://虚拟优购码
 								displayResult('type-4',rs.data.coupon);
 								break;
 							default://未中奖
 								displayResult('type-1');
 						}
-					}else if(rs.code === 1){
+					}else if(rs.code == 1){
 						// 今天已经抽过
 						displayResult('type-3');
-					}else if(rs.code === -1){
+					}else if(rs.code == -1){
 						// 未登录 (理论上不可能)
 						window.location.href = rs.data.honor + "&reurl="+ encodeURIComponent(HONOR.Config.baseUrl);
 					}
@@ -716,7 +736,12 @@
 		};
 
 		var hideResult = function(){
-			TL.to(resultBox, 0.4, {scale: 0.8, opacity: 0, onComplete: onHideCompleteHandle});
+			if(HONOR.Public.isltIE8){
+				resultBox.css('opacity', 0);
+				resultBox.hide();
+			}else{
+				TL.to(resultBox, 0.4, {scale: 0.8, opacity: 0, onComplete: onHideCompleteHandle});	
+			}
 		};
 
 		var onHideCompleteHandle = function(){
@@ -758,7 +783,7 @@
 			})
 			shareBtn.on('click', function(){
 				var title = encodeURIComponent('这些明星都是sei？臣妾猜不出啊！'),
-	            pic = encodeURIComponent('http://campaign.honor.cn/test/planet/star/pc/images/share.jpg'),
+	            pic = encodeURIComponent('http://campaign.honor.cn/planet/star/pc/images/share.jpg'),
 	            l = encodeURIComponent(location.href);
 	        	openWin('http://v.t.sina.com.cn/share/share.php?title=' + title + '&url=' + l + '&pic=' + pic, 'weibo', 900, 600);
 	        	_paq.push(['trackLink','star_xinlangshare','link','']);_tjc.push(['_trackEvent','index','star_xinlangshare','','1','']);
@@ -776,13 +801,17 @@
 
 	// 登录/注销
 	HONOR.Api = (function(){
+		// showResult -> 显示抽奖结果
+		// showUserInfo -> 显示个人中心
+		// jumpIfFalse -> 如果没登录跳转至登录页面
+		var hasLotteried = false;
 		var isLogin = function(showResult, showUserInfo, jumpIfFalse){
 			$.ajax({
 				url: HONOR.Config.api + 'islogin',
 				method: 'GET',
 				dataType: HONOR.Config.dataType,
 				success: function(rs){
-					if(rs.code === -1){
+					if(rs.code == -1){
 						// 未登录
 						if(showResult){
 							reurl = HONOR.Config.baseUrl + '?showResult=true';
@@ -794,7 +823,7 @@
 						if(jumpIfFalse){
 							window.location.href = rs.data.honor + "&reurl="+ encodeURIComponent(reurl);
 						}
-					}else if(rs.code === 0){
+					}else if(rs.code == 0){
 						// 已登录
 						$('#nav .info .username').text('您好，'+rs.data.uname);
 						// rs.data.first_stage ->0(未参加),1(参加过)
@@ -810,6 +839,9 @@
 						}
 						if(showUserInfo){
 							HONOR.Result.displayResult('type-7',rs.data);
+						}
+						if(rs.data.today){
+							HONOR.Api.hasLotteried = true;
 						}
 					}
 				}
@@ -829,7 +861,8 @@
 
 		return {
 			isLogin: isLogin,
-			Logout: Logout
+			Logout: Logout,
+			hasLotteried: hasLotteried
 		};
 	})();
 
