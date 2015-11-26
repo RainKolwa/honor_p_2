@@ -363,7 +363,8 @@
 	// 控制面板
 	HONOR.Panel = (function(){
 		var panel = $('.ctlpanel'),
-			statusBox = panel.find('.statusBox');
+			statusBox = panel.find('.statusBox'),
+			planets = $('.planets');
 
 		var init = function(){
 			bindEvents();
@@ -382,7 +383,8 @@
 					if($('.planets').length > 0){
 						TL.to($('.planets'),0.8,{y:100,opacity:0});
 						setTimeout(function(){
-							$('.planets').remove();
+							// 隐藏星球
+							TL.to(planets, 1, {opacity: 0});
 						},500)
 					}
 				}else if($(this).hasClass('next')){
@@ -413,6 +415,8 @@
 			}else{
 				ascount = answeredCount;
 			}
+			console.log(HONOR.Exam.questions);
+			console.log('ascount='+ascount);
 			switch (ascount){
 				case 0:
 					statusBox.find('.start').show().siblings().hide();
@@ -492,7 +496,7 @@
 
 		var showQuestion = function(index){
 			// 显示第 index 条题目
-			var html = template('examView', questions[index]);
+			var html = template('examView', HONOR.Exam.questions[index]);
 			$('#examBox').html(html);
 			examBox.show();
 			if(!HONOR.Public.isltIE8){
@@ -549,6 +553,7 @@
 		var cityBox = resultBox.find('.suboption');
 		var provinceSel = resultBox.find('.selectbox');
 		var citySel = resultBox.find('.subselect');
+		var planets = $('.planets');
 		
 		var init = function(){
 			bindEvents();
@@ -563,6 +568,8 @@
 				hideResult();
 				HONOR.Exam.questions = HONOR.Config.questions.slice();
 				HONOR.Panel.setStatus();
+				// 显示星球
+				TL.to(planets, 1, {opacity: 1});
 			})
 			resultBox.on('click', '.logout', function(){
 				HONOR.Api.Logout();
@@ -699,6 +706,9 @@
 						// 未登录 (理论上不可能)
 						window.location.href = rs.data.honor + "&reurl="+ encodeURIComponent(HONOR.Config.baseUrl);
 					}
+					if(rs.data.prize_count > 0){
+						$('#sidebar .period-3').removeClass('canbeunlock');
+					}
 				}
 			})
 		};
@@ -779,6 +789,11 @@
 					}else if(rs.code === 0){
 						// 已登录
 						$('#nav .info .username').text('您好，'+rs.data.uname);
+						// rs.data.first_stage ->0(未参加),1(参加过)
+						if(rs.data.first_stage){
+							$('#sidebar .period-1').removeClass('canbeunlock');
+							$('#sidebar .period-2').removeClass('canbeunlock');
+						}
 						if(showResult){
 							HONOR.Result.requestResult();
 						}

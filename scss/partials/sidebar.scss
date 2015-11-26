@@ -32,9 +32,10 @@
 
     .crcode-wrap {
         position: relative;
-        width: 50px;
+        width: 38px;
         height: 45px;
         cursor: pointer;
+        display: block;
         .active-view {
             display: none;
             position: absolute;
@@ -42,43 +43,42 @@
             top: 0;
             width: 294px;
             height: 176px;
-            background: url(../images/crcode.png) 0/100% no-repeat;
+            background: url(../images/crcode.png) no-repeat;
+            background-size: contain;
             -ms-behavior: url(backgroundsize.min.htc);
         }
         .active-view-2{
             width: 192px;
             height: 208px;
             left: -200px;
-            top: -40px;
-            background: url(../images/qrcode.png) 0/100% no-repeat;
+            top: -10px;
+            background: url(../images/qrcode.png) no-repeat;
+            background-size: contain;
             -ms-behavior: url(backgroundsize.min.htc);
         }
         &:hover .active-view {
             display: block;
         }
-    }
-
-    &.status-prize .crcode-wrap {
-        background: url(../images/unlock.png) 0 4px no-repeat;
-        background-size: cover;
-    }
-
-    &.status-unlock .crcode-wrap {
-        background: none;
-    }
-
-    .history {
-        display: block;
-        height: 40px;
-        width: 50px;
-        margin-top: 40px;
-        margin-left: 0;
-    }
-
-    &.status-prize .history {
-        background: url(../images/history.png) 0/80% no-repeat;
-        -ms-behavior: url(backgroundsize.min.htc);
-        background-position: 3px -4px;
-
+        &.canbeunlock{
+            background: url(../images/canbeunlock.png) no-repeat;
+        }
+        &.locked{
+            background: url(../images/locked.png) no-repeat;
+        }
+        &.period-1{
+            margin: 6px 0 0 4px;
+        }
+        &.period-2{
+            margin: 30px 0 0 4px;
+        }
+        &.period-3{
+            margin: 30px 0 0 4px;
+        }
+        &.period-4{
+            margin: 56px 0 0 4px;
+        }
+        &.period-5{
+            margin: 43px 0 0 4px;
+        }
     }
 }
