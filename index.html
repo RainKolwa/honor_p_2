@@ -17,6 +17,69 @@
 	<script src="http://www.honor.cn/new/js/html5shiv.min.js"></script>
 	<script src="http://www.honor.cn/new/js/respond.min.js"></script>
 	<![endif]-->
+
+	<!-- Tracking code -->
+	<script>
+	 	/*
+	    *
+	    * 获取cookie
+	    * 
+	    *
+	    *******************************/
+	    function getCookie(c_name)
+	    {
+	    if (document.cookie.length>0)
+	      {
+	      c_start=document.cookie.indexOf(c_name + "=")
+	      if (c_start!=-1)
+	        { 
+	        c_start=c_start + c_name.length+1 
+	        c_end=document.cookie.indexOf(";",c_start)
+	        if (c_end==-1) c_end=document.cookie.length
+	        return unescape(document.cookie.substring(c_start,c_end))
+	        } 
+	      }
+	    return ""
+	    }
+
+	</script>  
+	<script>
+	    var _tjc = _tjc || [];
+	    _tjc.push(["_setAccount", "620"]);
+	</script> 
+	<script type=text/javascript>STAT_ADS_ID="620";</script> 
+	<script src=http://i.adt100.com/i.js></script>  
+	<script type=text/javascript>
+	var _paq = _paq || [];
+	_paq.push(['setTrackerUrl', 'http://datacollect.vmall.com:28080/webv1']);
+	_paq.push(['setSiteId', 'www.honor.cn']);
+	var _doc = document.getElementsByTagName('head')[0];
+	var js = document.createElement('script');
+	js.setAttribute('type', 'text/javascript');
+	js.setAttribute('src', 'http://res.vmall.com/bi/hianalytics.js');
+	_doc.appendChild(js);
+	_paq.push(['setCustomVariable',1, 'sid', '', 'page']);
+	_paq.push(['trackPageView']);
+	</script>  
+	<script type=text/javascript>
+	window["_BFD"] = window["_BFD"] || {};
+	_BFD.client_id = "honorWebsite";
+	_BFD.BFD_USER = {
+	"user_id" : getCookie('user_id')
+	};
+	_BFD.script = document.createElement("script");
+	_BFD.script.type = "text/javascript";
+	_BFD.script.async = true;
+	_BFD.script.charset = "utf-8";
+	_BFD.script.src = 'http://dmp-collector.huawei.com/api/2.0/honorWebsite.js';
+	document.getElementsByTagName("head")[0].appendChild(_BFD.script);
+
+	function gotrack(name){
+		_paq.push(['trackLink',name,'link','']);
+		_tjc.push(['_trackEvent','index',name,'','1','']);
+	}
+	</script>
+
 </head>
 <body>
 	<!-- Preload Resource -->
@@ -95,19 +158,19 @@
 		<div class="type-2 type-box">
 			<h3>恭喜您！获得荣耀星球勋章一枚！</h3>
 			<p>立即激活将有机会赢取荣耀手机哦！</p>
-			<a href="javascript:;" class="button hideit start">打开抽奖</a>
+			<a href="javascript:;" class="button hideit start" onclick="_paq.push(['trackLink','star_button_dakaichoujiang','link','']);_tjc.push(['_trackEvent','index','star_button_dakaichoujiang','','1','']);">打开抽奖</a>
 		</div>
 		<!--未中奖-->
 		<div class="type-1 type-box">
 			<h3>很遗憾！你与大奖擦肩而过，明天再接再厉！</h3>
 			<p>集齐荣耀星球的所有勋章，12月1日起，<br />登录本站点即有机会获得荣耀星球船票，继续坚持哦！</p>
-			<a href="javascript:;" class="button hideit">确定</a>
+			<a href="javascript:;" class="button hideit" onclick="_paq.push(['trackLink','star_button_dajiangchajianerguo','link','']);_tjc.push(['_trackEvent','index','star_button_dajiangchajianerguo','','1','']);">确定</a>
 		</div>
 		<!--明天再来-->
 		<div class="type-3 type-box">
 			<h3>你今天的抽奖机会已用完，请明天再来~</h3>
 			<p>集齐荣耀星球的所有勋章，12月1日起，<br>登录本站点即有机会获得荣耀星球船票，继续坚持哦！</p>
-			<a href="javascript:;" class="button hideit">确定</a>
+			<a href="javascript:;" class="button hideit" onclick="_paq.push(['trackLink','star_button_dakaichoujiang_over','link','']);_tjc.push(['_trackEvent','index','star_button_dakaichoujiang_over','','1','']);">确定</a>
 		</div>
 		<div class="type-4 type-box">
 			<h3>你运气太好了，获得手机优购码一枚！</h3>
@@ -116,8 +179,8 @@
 				<span></span>
 			</div>
 
-			<a href="javascript:;" class="button save">立即保存</a>
-			<p>点击保存至个人中心前往<a href="#" target="_blank">华为商城</a>使用</p>
+			<a href="javascript:;" class="button save" onclick="_paq.push(['trackLink','star_button_lijibaocun_yougouma','link','']);_tjc.push(['_trackEvent','index','star_button_lijibaocun_yougouma','','1','']);">立即保存</a>
+			<p>点击保存至个人中心前往<a href="http://www.vmall.com/priority" target="_blank" onclick="_paq.push(['trackLink','star_link_huaweishangcheng','link','']);_tjc.push(['_trackEvent','index','star_link_huaweishangcheng','','1','']);">华为商城</a>使用</p>
 		</div>
 		<!--中大奖-->
 		<div class="type-5 type-box">
@@ -135,7 +198,7 @@
 				<div class="suboption"></div>
 				<input type="text" name="addr" id="addr" value="输入详细地址" />
 			</div>
-			<a href="javascript:;" class="button submit">提交</a>
+			<a href="javascript:;" class="button submit" onclick="_paq.push(['trackLink','star_button_tijiao_shouji7i','link','']);_tjc.push(['_trackEvent','index','star_button_tijiao_shouji7i','','1','']);">提交</a>
 			<p>集齐荣耀星球的所有勋章，12月1日起，登录本站点即有机会获得荣耀星球船票，继续坚持哦！</p>
 		</div>
 		<!--活动规则-->
@@ -182,7 +245,7 @@
             <div class="active-view"></div>
         </a>
         <a class="crcode-wrap period-2 canbeunlock" href="http://campaign.honor.cn/planet/parade/pc/history.html" target="_blank"></a>
-        <a class="crcode-wrap period-3 canbeunlock">
+        <a class="crcode-wrap period-3 canbeunlock" href="#">
             <div class="active-view active-view-2"></div>
         </a>
         <a class="crcode-wrap period-4 locked"></a>

@@ -195,7 +195,7 @@
 							startTyping(text, 100, "test");
 						}
 						if(window.location.href.indexOf('showUname') > -1){
-							HONOR.Api.isLogin(false, true);
+							HONOR.Api.isLogin(false, true, true);
 						}
 					}
 				});
@@ -387,6 +387,7 @@
 							TL.to(planets, 1, {opacity: 0});
 						},500)
 					}
+					_paq.push(['trackLink','star_button_qucai','link','']);_tjc.push(['_trackEvent','index','star_button_qucai','','1','']);
 				}else if($(this).hasClass('next')){
 					if($('.a1').text() === '' || $('.a2').text() === ''){
 						HONOR.Public.alert('请完善答案');
@@ -394,6 +395,7 @@
 					}
 					HONOR.Exam.randomQuestion();
 					HONOR.Panel.setStatus();
+					_paq.push(['trackLink','star_button_tijiao','link','']);_tjc.push(['_trackEvent','index','star_button_tijiao','','1','']);
 				}else if($(this).hasClass('submit')){
 					if($('.a1').text() === '' || $('.a2').text() === ''){
 						HONOR.Public.alert('请完善答案');
@@ -401,6 +403,7 @@
 					}
 					HONOR.Exam.submitAnswers();
 					$('.examLight').hide();
+					_paq.push(['trackLink','star_button_tijiao','link','']);_tjc.push(['_trackEvent','index','star_button_tijiao','','1','']);
 				}else{
 					return;
 				}
@@ -415,8 +418,6 @@
 			}else{
 				ascount = answeredCount;
 			}
-			console.log(HONOR.Exam.questions);
-			console.log('ascount='+ascount);
 			switch (ascount){
 				case 0:
 					statusBox.find('.start').show().siblings().hide();
@@ -562,7 +563,7 @@
 		var bindEvents = function(){
 			// 打开抽奖
 			resultBox.on('click', '.start', function(){
-				HONOR.Api.isLogin(true);
+				HONOR.Api.isLogin(true, false, true);
 			})
 			resultBox.on('click', '.hideit', function(){
 				hideResult();
@@ -570,6 +571,10 @@
 				HONOR.Panel.setStatus();
 				// 显示星球
 				TL.to(planets, 1, {opacity: 1});
+				// 追踪打开抽奖页面下的关闭按钮
+				if(!$('.type-2').is('hidden')){
+					_paq.push(['trackLink','star_button_dakaichoujiang_close','link','']);_tjc.push(['_trackEvent','index','star_button_dakaichoujiang_close','','1','']);
+				}
 			})
 			resultBox.on('click', '.logout', function(){
 				HONOR.Api.Logout();
@@ -706,9 +711,6 @@
 						// 未登录 (理论上不可能)
 						window.location.href = rs.data.honor + "&reurl="+ encodeURIComponent(HONOR.Config.baseUrl);
 					}
-					if(rs.data.prize_count > 0){
-						$('#sidebar .period-3').removeClass('canbeunlock');
-					}
 				}
 			})
 		};
@@ -743,19 +745,23 @@
 		};
 		var bindEvents = function(){
 			ucenter.on('click', function(){
-				HONOR.Api.isLogin(false, true);
+				HONOR.Api.isLogin(false, true, true);
+				_paq.push(['trackLink','star_gerenzhongxin','link','']);_tjc.push(['_trackEvent','index','star_gerenzhongxin','','1','']);
 			})
 			uname.on('click', function(){
-				HONOR.Api.isLogin(false, true);
+				HONOR.Api.isLogin(false, true, true);
+				_paq.push(['trackLink','star_gerenzhongxin','link','']);_tjc.push(['_trackEvent','index','star_gerenzhongxin','','1','']);
 			})
 			ruleAnchor.on('click', function(){
 				HONOR.Result.displayResult('type-6');
+				_paq.push(['trackLink','star_huodongguize','link','']);_tjc.push(['_trackEvent','index','star_huodongguize','','1','']);
 			})
 			shareBtn.on('click', function(){
 				var title = encodeURIComponent('这些明星都是sei？臣妾猜不出啊！'),
 	            pic = encodeURIComponent('http://campaign.honor.cn/test/planet/star/pc/images/share.jpg'),
 	            l = encodeURIComponent(location.href);
 	        	openWin('http://v.t.sina.com.cn/share/share.php?title=' + title + '&url=' + l + '&pic=' + pic, 'weibo', 900, 600);
+	        	_paq.push(['trackLink','star_xinlangshare','link','']);_tjc.push(['_trackEvent','index','star_xinlangshare','','1','']);
 			})
 		};
 		var openWin = function(url, name, width, height){
@@ -770,7 +776,7 @@
 
 	// 登录/注销
 	HONOR.Api = (function(){
-		var isLogin = function(showResult, showUserInfo){
+		var isLogin = function(showResult, showUserInfo, jumpIfFalse){
 			$.ajax({
 				url: HONOR.Config.api + 'islogin',
 				method: 'GET',
@@ -785,7 +791,9 @@
 						}else{
 							reurl = HONOR.Config.baseUrl;
 						}
-						window.location.href = rs.data.honor + "&reurl="+ encodeURIComponent(reurl);
+						if(jumpIfFalse){
+							window.location.href = rs.data.honor + "&reurl="+ encodeURIComponent(reurl);
+						}
 					}else if(rs.code === 0){
 						// 已登录
 						$('#nav .info .username').text('您好，'+rs.data.uname);
@@ -793,6 +801,9 @@
 						if(rs.data.first_stage){
 							$('#sidebar .period-1').removeClass('canbeunlock');
 							$('#sidebar .period-2').removeClass('canbeunlock');
+						}
+						if(rs.data.prize_count > 0){
+							$('#sidebar .period-3').removeClass('canbeunlock');
 						}
 						if(showResult){
 							HONOR.Result.requestResult();
@@ -811,7 +822,6 @@
 				method: 'GET',
 				dataType: HONOR.Config.dataType,
 				success: function(rs){
-					// console.log(rs);
 					HONOR.Public.alert("注销成功");
 				}
 			})
@@ -828,6 +838,7 @@
 	HONOR.Public.init();
 	HONOR.User.init();
 	HONOR.Result.init();
+	HONOR.Api.isLogin(false, false, false);
 
 	// 测试
 	// HONOR.Exam.showQuestion(0);
