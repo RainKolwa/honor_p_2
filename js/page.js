@@ -79,6 +79,7 @@
 		}
 
 		var hasTriedToday = false;
+		var isCamoaignOver = true;
 
 		var init = function(){
 			// transform examBox 876* 556
@@ -115,7 +116,8 @@
 			init: init,
 			isltIE8: isltIE8,
 			alert: alert,
-			hasTriedToday: hasTriedToday
+			hasTriedToday: hasTriedToday,
+			isCamoaignOver: isCamoaignOver
 		}
 	})();
 
@@ -535,13 +537,17 @@
 			// 提交答案（myAnswers）
 
 			// success回调
-			setTimeout(function(){
+			// setTimeout(function(){
+			if(HONOR.Public.isCamoaignOver){
+				HONOR.Result.displayResult('type-8');
+			}else{
 				if(HONOR.Api.hasLotteried || HONOR.Public.hasTriedToday){
 					HONOR.Result.displayResult('type-3');
 				}else{
 					HONOR.Result.displayResult('type-2');//恭喜您！获得荣耀星球勋章一枚		
 				}
-			},1000)
+			}
+			// },1000)
 		}
 
 		return {
