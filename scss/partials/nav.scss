@@ -48,6 +48,12 @@ header,
         -ms-behavior: url(backgroundsize.min.htc);
     }
 
+    .prize {
+        background: url(../images/btn-prize.png) no-repeat;
+        background-size: contain;
+        -ms-behavior: url(backgroundsize.min.htc);
+    }
+
     .rule {
         background: url(../images/rule.png) no-repeat;
         background-size: contain;

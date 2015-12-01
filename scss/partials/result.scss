@@ -213,4 +213,37 @@
 			background: url(../images/ufo-normal.png) center top no-repeat;
 		}
 	}
+	.type-9{
+		h3{
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+		.innerbox{
+			overflow-y: scroll;
+			height: 410px;
+			width: 80%;
+			margin: 100px 0 0 100px;
+			padding-right: 50px;
+		}
+		.hd{
+			width: 655px;
+			margin: 0 auto;
+			padding-bottom: 20px;
+			margin-bottom: 20px;
+			font-size: 16px;
+			color: #fff;
+			background: url(../images/underline.png) center bottom no-repeat;
+		}
+		.bd{
+			table{
+				width: 600px;
+				margin-left: 75px;
+				td{
+					font-size: 16px;
+					color: #fff;
+					padding: 8px 0;
+				}
+			}
+		}
+	}
 }

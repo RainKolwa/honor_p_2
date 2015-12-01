@@ -768,6 +768,7 @@
 		var nav = $('#nav');
 		var uname = nav.find('.username');
 		var ucenter = nav.find('#user-center');
+		var prizeAnchor = nav.find('.prize');
 		var ruleAnchor = nav.find('.rule');
 		var shareBtn = nav.find('.share');
 
@@ -782,6 +783,9 @@
 			uname.on('click', function(){
 				HONOR.Api.isLogin(false, true, true);
 				_paq.push(['trackLink','star_gerenzhongxin','link','']);_tjc.push(['_trackEvent','index','star_gerenzhongxin','','1','']);
+			})
+			prizeAnchor.on('click', function(){
+				HONOR.Result.displayResult('type-9');
 			})
 			ruleAnchor.on('click', function(){
 				HONOR.Result.displayResult('type-6');
